@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Logo = ({ className = "", withLink = false }) => {
   const content = (
-    <svgs
+    <svg
       className={className}
       viewBox="0 0 92 26"
       fill="none"
