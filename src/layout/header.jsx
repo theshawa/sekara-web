@@ -7,7 +7,7 @@ export const Header = () => {
       <Logo className="text-slate-950 w-[80px]" withLink />
       <nav className="flex items-center space-x-8 flex-1 ml-5 overflow-auto justify-end">
         <Link to="/about" className="link">
-          About
+          About Us
         </Link>
         <Link to="/write">
           <button className="btn flex items-center space-x-1.5">
