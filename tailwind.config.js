@@ -10,6 +10,7 @@ export default {
     colors: {
       slate: Colors.slate,
       brand: { dark: Colors.cyan[500], DEFAULT: Colors.cyan[400] },
+      transparent: Colors.transparent,
     },
     extend: {},
   },
