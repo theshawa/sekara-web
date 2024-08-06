@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply font-inter bg-slate-50 text-slate-950 text-sm;
+}
+
+h1 {
+  @apply text-3xl font-medium text-slate-950;
+}
+
+h1.alt {
+  @apply text-2xl font-bold text-slate-950;
+}
+
+input {
+  @apply px-[16px] rounded-[6px] border border-slate-300 bg-slate-100 h-[32px] placeholder:text-slate-500 outline-none focus:border-slate-400 transition-colors duration-300 ease-in-out;
+}
+
+button {
+  @apply px-[16px] rounded-[6px] h-[32px] bg-slate-950 text-slate-200 font-semibold hover:bg-slate-900 transition-colors duration-300 ease-in-out active:scale-95;
+}
+
+p {
+  @apply text-slate-600 text-base;
+}
