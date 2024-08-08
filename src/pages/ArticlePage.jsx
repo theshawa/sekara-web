@@ -1,3 +1,5 @@
+import ClapIcon from './ClapIcon';
+
 export const ArticlePage = () => {
 
     const obj = {
@@ -18,7 +20,11 @@ export const ArticlePage = () => {
             <div><a class="hover:bg-slate-200" href='/profile1'>{obj.name}</a></div>
             <div>tag</div>
             <div>{obj.posted_date}</div>
-            <div>clap & count</div>
+            <div class="flex space-x-2">
+
+                <ClapIcon />
+
+            </div>
 
         </section>
 
