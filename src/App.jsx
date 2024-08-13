@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import { AppLayout } from "./layout";
 import { HomePage } from "./pages/home";
 import { NotFoundPage } from "./pages/not-found";
@@ -17,6 +17,19 @@ function App() {
           <Route path="/profile1" element={<Profile />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <div class="border-solid border-4 border-gray-600">
+          <nav class="text-slate-50 bg-slate-900 grid space-x-5">
+
+            <h1 class="text-slate-200">Navbar</h1>
+
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/article'>Article page</NavLink>
+            <NavLink to='/admin-article'>Admin article page</NavLink>
+
+
+          </nav>
+        </div>
+
       </AppLayout>
     </BrowserRouter>
   );
