@@ -20,7 +20,7 @@ function App() {
         <div class="border-solid border-4 border-gray-600">
           <nav class="text-slate-50 bg-slate-900 grid space-x-5">
 
-            <h1 class="text-slate-200">Navbar</h1>
+            <h1 class="text-slate-200">Navbar(Temporarily for navigate through pages)</h1>
 
             <NavLink to='/'>Home</NavLink>
             <NavLink to='/article'>Article page</NavLink>
