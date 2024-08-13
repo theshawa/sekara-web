@@ -1,4 +1,4 @@
-import ClapIcon from './ClapIcon';
+import ClapIcon from '../assets/ClapIcon';
 
 
 export const ArticlePage = () => {

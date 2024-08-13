@@ -2,7 +2,15 @@ import React from 'react';
 
 function CommentBox() {
 
-    return ();
+    return (
+
+        <>
+
+            <h2>Comment</h2>
+
+        </>
+
+    );
 
 }
 
