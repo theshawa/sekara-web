@@ -10,15 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-=======
     "@heroicons/react": "^2.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0"
->>>>>>> e63601117968a0df1f6eac391b34a5a21b51dbd3
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
