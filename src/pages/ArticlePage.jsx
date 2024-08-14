@@ -1,4 +1,5 @@
 import ClapIcon from '../assets/ClapIcon';
+import CommentBox from '../assets/CommentBox';
 
 
 export const ArticlePage = () => {
@@ -52,7 +53,7 @@ export const ArticlePage = () => {
 
         <div>
 
-
+            <CommentBox></CommentBox>
 
         </div>
 

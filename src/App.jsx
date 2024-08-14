@@ -4,7 +4,7 @@ import { HomePage } from "./pages/home";
 import { NotFoundPage } from "./pages/not-found";
 import { AdminArticlePage } from "./pages/AdminArticlePage";
 import { ArticlePage } from "./pages/ArticlePage";
-import Profile from "./pages/Profile";
+import Profile from "./assets/Profile";
 
 function App() {
   return (
