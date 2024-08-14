@@ -3,9 +3,9 @@ import { Logo } from "../common/Logo";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 h-[60px] flex items-center justify-between">
+    <header className="sticky top-0 h-[60px] flex items-center justify-between z-50 bg-slate-50/90 backdrop-blur-sm">
       <Logo className="text-slate-950 w-[80px]" withLink />
-      <nav className="flex items-center space-x-8 flex-1 ml-5 overflow-auto justify-end">
+      <nav className="flex items-center space-x-5 md:space-x-8 flex-1 ml-5 overflow-auto justify-end">
         <Link to="/about" className="link">
           About Us
         </Link>
