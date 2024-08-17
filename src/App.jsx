@@ -1,18 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AppLayout } from "./layout";
-import { HomePage } from "./pages/home";
-import { NotFoundPage } from "./pages/not-found";
+import { RouterProvider } from "react-router-dom";
+import { AppContextProvider } from "./context";
+import { router } from "./router";
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppLayout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </AppLayout>
-    </BrowserRouter>
+    <AppContextProvider>
+      <RouterProvider router={router} />
+    </AppContextProvider>
   );
 }
 

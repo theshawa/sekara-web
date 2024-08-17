@@ -1,13 +1,30 @@
-import { Link } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export const Topic = ({ children = "", slug = "" }) => {
+export const Topic = ({ title = "", _id = "" }) => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
   return (
-    <Link
-      to={`/?topic=${slug}`}
-      className="rounded-full h-[40px] flex-shrink-0 w-max max-w-full text-xl flex items-center px-5 hover:bg-slate-200/50 transition-colors duration-300 ease-in-out text-slate-700"
+    <button
+      onClick={() => {
+        const csp = searchParams;
+        if (_id === "") {
+          csp.delete("topic");
+        } else {
+          csp.set("topic", _id);
+        }
+        navigate({ search: csp.toString(), pathname: "/" });
+      }}
+      disabled={
+        (!searchParams.get("topic") && _id === "") ||
+        searchParams.get("topic") === _id
+      }
+      className="rounded-full h-[40px] flex-shrink-0 w-max max-w-full text-xl flex items-center px-5 hover:bg-slate-200/50 disabled:bg-slate-200 disabled:pointer-events-none text-slate-700"
     >
-      <span className="mr-2">#</span>
-      <span className="whitespace-nowrap flex-1 truncate">{children}</span>
-    </Link>
+      <span className="mr-1">#</span>
+      <span className="whitespace-nowrap flex-1 truncate capitalize">
+        {title}
+      </span>
+    </button>
   );
 };

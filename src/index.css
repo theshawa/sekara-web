@@ -19,15 +19,27 @@ h1 {
 }
 
 h1.alt {
-  @apply text-2xl font-bold text-slate-950;
+  @apply text-2xl text-slate-950;
 }
 
-input {
-  @apply px-[16px] rounded-[6px] border border-slate-300 bg-slate-100 h-[32px] placeholder:text-slate-500 outline-none focus:border-slate-400 transition-colors duration-300 ease-in-out;
+h2 {
+  @apply text-xl font-semibold;
+}
+
+.input {
+  @apply px-3 rounded-[6px] border border-slate-300 bg-slate-100 h-8 placeholder:text-slate-500 outline-none focus:border-slate-400;
+}
+
+textarea.input {
+  @apply h-auto max-h-28 py-1.5 resize-y min-h-8;
 }
 
 .btn {
-  @apply px-[16px] rounded-[6px] h-[32px] bg-slate-950 text-slate-200 font-semibold hover:bg-slate-900 transition-colors duration-300 ease-in-out active:scale-95;
+  @apply px-[16px] disabled:pointer-events-none disabled:opacity-60 rounded-[6px] h-[32px] bg-slate-950 text-slate-200 font-semibold hover:bg-slate-900 active:scale-95;
+}
+
+.btn.danger {
+  @apply bg-red-600 text-white hover:bg-red-500;
 }
 
 p {
@@ -35,5 +47,18 @@ p {
 }
 
 header .link {
-  @apply font-medium text-slate-800 transition-colors underline active:scale-95 decoration-transparent hover:decoration-slate-600 duration-300 ease-in-out;
+  @apply font-medium flex-shrink-0 text-slate-800 underline active:scale-95 decoration-transparent hover:decoration-slate-600;
+}
+
+input,
+button {
+  outline: none;
+}
+
+label.field {
+  @apply flex flex-col mb-4;
+}
+
+label.field span {
+  @apply text-slate-600 text-sm mb-0.5;
 }
