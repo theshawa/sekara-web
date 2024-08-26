@@ -11,8 +11,9 @@ export const AddComment = ({ articleId, onAdd }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post(`/articles/${articleId}/comments`, {
+      const { data } = await api.post(`/comments`, {
         content: comment,
+        articleId,
       });
       setComment("");
       onAdd(data);
