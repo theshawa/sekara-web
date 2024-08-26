@@ -75,6 +75,7 @@ export const AccountPage = () => {
       return;
     }
     try {
+      alert("Your account deleted successfully! We are sorry to see you go.");
       await api.delete("/user");
       setAuth(null);
       localStorage.removeItem("auth");
@@ -83,7 +84,7 @@ export const AccountPage = () => {
     }
   };
   return (
-    <div className="flex flex-col py-10">
+    <div className="flex flex-col py-10 max-w-screen-sm mx-auto">
       <h1 className="mb-5">Your Account</h1>
       {auth && auth.user.role !== USER_ROLES.user ? (
         <p className="px-3 py-1 rounded-md font-medium text-white bg-emerald-700 w-max max-w-full">
@@ -92,15 +93,15 @@ export const AccountPage = () => {
             ? "the Admin"
             : auth.user.role === USER_ROLES.moderator
             ? "a Moderator"
-            : "a Writer"}
+            : "a ✍️ Writer"}
         </p>
       ) : (
         <p>
           You are still a viewer.{" "}
-          <Link className="hover:underline" to={"/write"}>
-            Write
+          <Link className="hover:underline font-bold" to={"/write"}>
+            ✍️ Write
           </Link>{" "}
-          an article to gain the writer title.
+          an article to <i>be a writer</i>.
         </p>
       )}
       <div className="flex flex-col max-w-sm">

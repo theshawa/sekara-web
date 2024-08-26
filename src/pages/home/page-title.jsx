@@ -3,7 +3,7 @@ export const PageTitle = ({ query, selectedTopic }) => {
     return null;
   }
   return (
-    <h1 className="alt">
+    <h1 className="alt mb-10">
       Articles for{" "}
       {selectedTopic ? (
         <>

@@ -4,13 +4,16 @@ import { AboutPage } from "./pages/about";
 import { AccountPage } from "./pages/account";
 import { ErrorPage } from "./pages/error";
 import { HomePage } from "./pages/home";
-import { HomeLoaderFunction } from "./pages/home/loader";
+import { HomePageLoaderFunction } from "./pages/home/loader";
+import { ReadPage } from "./pages/read";
+import { ReadPageLoader } from "./pages/read/loader";
 import { SearchResultsPage } from "./pages/search-results";
 import { SignInPage } from "./pages/sign-in";
 import { SignInActionFunction } from "./pages/sign-in/action";
 import { SignUpPage } from "./pages/sign-up";
 import { SignUpActionFunction } from "./pages/sign-up/action";
 import { WritePage } from "./pages/write";
+import { WritePageLoaderFunction } from "./pages/write/loader";
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +24,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
-        loader: HomeLoaderFunction,
+        loader: HomePageLoaderFunction,
       },
       {
         path: "sign-in",
@@ -40,6 +43,7 @@ export const router = createBrowserRouter([
       {
         path: "write",
         element: <WritePage />,
+        loader: WritePageLoaderFunction,
       },
       {
         path: "about",
@@ -48,6 +52,11 @@ export const router = createBrowserRouter([
       {
         path: "search-results",
         element: <SearchResultsPage />,
+      },
+      {
+        path: "read/:id",
+        element: <ReadPage />,
+        loader: ReadPageLoader,
       },
     ],
   },

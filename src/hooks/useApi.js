@@ -25,8 +25,7 @@ export const useApi = (redirect = false) => {
           localStorage.removeItem("auth");
           if (redirect) navigate("/sign-in");
         } else {
-          const message =
-            err.response?.data?.message || "An unknown error occurred";
+          const message = err.response?.data?.message || "unknown error";
           alert(`An error occurred: ${message}`);
         }
         return Promise.reject(err);

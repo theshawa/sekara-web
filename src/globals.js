@@ -4,3 +4,5 @@ export const USER_ROLES = {
   user_writer: "user:writer",
   moderator: "moderator",
 };
+
+export const MAX_CHARACTER_TRESHOLD = 500;

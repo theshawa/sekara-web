@@ -1,0 +1,20 @@
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+  @apply border-none p-0 shadow-none !important;
+}
+
+.ck.ck-editor__editable_inline {
+  @apply p-0 border-none !important;
+}
+
+.ck.ck-placeholder::before,
+.ck .ck-placeholder::before {
+  @apply text-slate-500 !important;
+}
+
+.ck.ck-balloon-panel.ck-powered-by-balloon .ck.ck-powered-by .ck-icon,
+.ck.ck-balloon-panel.ck-powered-by-balloon .ck.ck-powered-by a,
+.ck.ck-balloon-panel.ck-powered-by-balloon
+  .ck.ck-powered-by
+  .ck-powered-by__label {
+  @apply hidden !important;
+}

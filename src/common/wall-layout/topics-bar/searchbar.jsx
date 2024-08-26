@@ -11,9 +11,13 @@ export const SearchBar = () => {
     const topic = searchParams.get("topic");
     if (query) {
       setQuery(query);
+    } else {
+      setQuery("");
     }
     if (topic) {
       setTopic(topic);
+    } else {
+      setTopic("");
     }
   }, [searchParams]);
   const formRef = useRef();

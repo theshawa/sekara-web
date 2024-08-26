@@ -46,6 +46,10 @@ p {
   @apply text-slate-600 text-base;
 }
 
+.prose p {
+  @apply text-slate-900;
+}
+
 header .link {
   @apply font-medium flex-shrink-0 text-slate-800 underline active:scale-95 decoration-transparent hover:decoration-slate-600;
 }
