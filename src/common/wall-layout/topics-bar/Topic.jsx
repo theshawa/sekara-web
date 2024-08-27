@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-export const Topic = ({ title = "", _id = "" }) => {
+export const Topic = ({ title = "", _id = "", onClick = () => {} }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -14,6 +14,7 @@ export const Topic = ({ title = "", _id = "" }) => {
           csp.set("topic", _id);
         }
         navigate({ search: csp.toString(), pathname: "/" });
+        onClick();
       }}
       disabled={
         (!searchParams.get("topic") && _id === "") ||

@@ -17,6 +17,8 @@ export const AddComment = ({ articleId, onAdd }) => {
       });
       setComment("");
       onAdd(data);
+    } catch (err) {
+      alert("Failed to add comment. Please try again later.");
     } finally {
       setLoading(false);
     }

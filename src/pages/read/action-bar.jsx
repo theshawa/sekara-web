@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useAppContext } from "../../../context";
-import { formatDate } from "../../../utils";
-import { ClapBtn } from "./clap-btn";
+import { ClapButton } from "../../common/clap-button";
+import { useAppContext } from "../../context";
+import { formatDate } from "../../utils";
 
 export const ActionBar = ({ updatedAt, createdBy, claps, topic, _id }) => {
   const { auth } = useAppContext();
@@ -24,7 +24,7 @@ export const ActionBar = ({ updatedAt, createdBy, claps, topic, _id }) => {
         🕑
         {formatDate(new Date(updatedAt))}
       </span>
-      {auth && <ClapBtn count={claps} _id={_id} />}
+      <ClapButton disabled={!auth} count={claps} _id={_id} />
     </div>
   );
 };

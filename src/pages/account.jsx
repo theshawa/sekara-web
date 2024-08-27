@@ -45,6 +45,8 @@ export const AccountPage = () => {
       localStorage.setItem("auth", JSON.stringify(newAuth));
       setAuth(newAuth);
       alert("Profile updated successfully");
+    } catch (err) {
+      alert("Failed to update profile. Please try again later or contact us.");
     } finally {
       setLoading(false);
     }
@@ -60,6 +62,8 @@ export const AccountPage = () => {
       );
       setAuth(null);
       localStorage.removeItem("auth");
+    } catch (err) {
+      alert("Failed to update password. Please try again later or contact us.");
     } finally {
       setLoading(false);
     }

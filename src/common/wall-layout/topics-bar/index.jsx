@@ -24,9 +24,9 @@ export const TopicsBar = ({ topics = [] }) => {
           showing ? "flex" : "hidden lg:flex"
         }`}
       >
-        <Topic _id="" title="All Topics" />
+        <Topic _id="" title="All Topics" onClick={() => setShowing(false)} />
         {topics.map((topic, i) => (
-          <Topic {...topic} key={i} />
+          <Topic {...topic} key={i} onClick={() => setShowing(false)} />
         ))}
       </div>
     </div>

@@ -32,10 +32,9 @@ export const Header = () => {
             </button>
           </>
         ) : (
-          // <Link to="/sign-in" className="link">
-          //   Sign in
-          // </Link>
-          ""
+          <Link to="/sign-in" className="link">
+            Sign in
+          </Link>
         )}
         {!auth || (auth && auth.role !== USER_ROLES.user_writer) ? (
           <Link to="/write">
