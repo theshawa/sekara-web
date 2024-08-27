@@ -8,7 +8,7 @@ export const ArticleCard = ({
   title,
   createdBy,
   topic,
-  updatedAt,
+  createdAt,
   _id,
   claps,
   comments,
@@ -30,7 +30,7 @@ export const ArticleCard = ({
           >
             #{topic.title}
           </Link>
-          <span>{formatDate(new Date(updatedAt))}</span>
+          <span>{formatDate(new Date(createdAt))}</span>
         </div>
         <Link
           to={`/read/${_id}`}

@@ -6,3 +6,5 @@ export const USER_ROLES = {
 };
 
 export const MAX_CHARACTER_TRESHOLD = 500;
+
+export const MAX_ARTICLES_PER_PAGE = 2;

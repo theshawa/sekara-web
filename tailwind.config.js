@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
       },
+      animation: {
+        "spin-fast": "spin 0.5s linear infinite",
+      },
       colors: {
         slate: Colors.slate,
         brand: { dark: Colors.cyan[500], DEFAULT: Colors.cyan[400] },

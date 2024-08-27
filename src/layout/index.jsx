@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigation } from "react-router-dom";
-import { LoadingScreen } from "../common/loading-screen";
 import { Header } from "./header";
+import { LoadingScreen } from "./loading-screen";
 
 export const AppLayout = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ export const AppLayout = () => {
       <main>
         <Outlet />
       </main>
-      {state === "loading" || (state === "submitting" && <LoadingScreen />)}
+      {(state === "loading" || state === "submitting") && <LoadingScreen />}
     </>
   );
 };

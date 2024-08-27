@@ -3,7 +3,7 @@ import { ClapButton } from "../../common/clap-button";
 import { useAppContext } from "../../context";
 import { formatDate } from "../../utils";
 
-export const ActionBar = ({ updatedAt, createdBy, claps, topic, _id }) => {
+export const ActionBar = ({ createdAt, createdBy, claps, topic, _id }) => {
   const { auth } = useAppContext();
 
   return (
@@ -22,7 +22,7 @@ export const ActionBar = ({ updatedAt, createdBy, claps, topic, _id }) => {
       </Link>
       <span className="mr-4">
         🕑
-        {formatDate(new Date(updatedAt))}
+        {formatDate(new Date(createdAt))}
       </span>
       <ClapButton disabled={!auth} count={claps} _id={_id} />
     </div>

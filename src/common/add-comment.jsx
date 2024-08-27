@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useApi } from "../hooks/useApi";
 
-export const AddComment = ({ articleId, onAdd }) => {
+export const AddComment = ({ article, onAdd }) => {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -11,11 +11,13 @@ export const AddComment = ({ articleId, onAdd }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { data } = await api.post(`/comments`, {
+      const commentData = {
         content: comment,
-        articleId,
-      });
+        article,
+      };
+      const { data } = await api.post(`/comments/create`, commentData);
       setComment("");
+
       onAdd(data);
     } catch (err) {
       alert("Failed to add comment. Please try again later.");

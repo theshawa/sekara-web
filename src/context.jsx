@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { LoadingScreen } from "./common/loading-screen";
+import { LoadingScreen } from "./layout/loading-screen";
 
 /**
  * Auth Object =>
