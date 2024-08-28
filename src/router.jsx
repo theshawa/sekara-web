@@ -6,12 +6,14 @@ import { ErrorPage } from "./pages/error";
 import { HomePage } from "./pages/home";
 import { HomePageLoaderFunction } from "./pages/home/loader";
 import { ReadPage } from "./pages/read";
-import { ReadPageLoader } from "./pages/read/loader";
+import { ReadPageLoaderFunction } from "./pages/read/loader";
 import { SearchResultsPage } from "./pages/search-results";
 import { SignInPage } from "./pages/sign-in";
 import { SignInActionFunction } from "./pages/sign-in/action";
 import { SignUpPage } from "./pages/sign-up";
 import { SignUpActionFunction } from "./pages/sign-up/action";
+import { UserPage } from "./pages/user";
+import { UserPageLoaderFunction } from "./pages/user/loader";
 import { WritePage } from "./pages/write";
 import { WritePageLoaderFunction } from "./pages/write/loader";
 
@@ -56,7 +58,12 @@ export const router = createBrowserRouter([
       {
         path: "read/:id",
         element: <ReadPage />,
-        loader: ReadPageLoader,
+        loader: ReadPageLoaderFunction,
+      },
+      {
+        path: "user/:id",
+        element: <UserPage />,
+        loader: UserPageLoaderFunction,
       },
     ],
   },
