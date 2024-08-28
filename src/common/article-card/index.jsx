@@ -68,7 +68,7 @@ export const ArticleCard = ({
                   <button
                     onClick={() => setShowComments(true)}
                     title="View Comments"
-                    className="flex items-center disabled:opacity-50 hover:scale-105 h-6 disabled:pointer-events-none active:scale-90 mr-4"
+                    className="flex items-center disabled:opacity-50 hover:scale-105 disabled:hover:scale-100 h-6 disabled:pointer-events-none active:scale-90 mr-4"
                   >
                     <span className="text-xl">📜</span> {comments || 0}
                   </button>
@@ -84,7 +84,7 @@ export const ArticleCard = ({
               {auth && (
                 <button
                   title="Bookmark Article"
-                  className="flex items-center hover:scale-105 disabled:opacity-50 disabled:pointer-events-none active:scale-90 ml-auto text-slate-500"
+                  className="flex items-center hover:scale-105 disabled:hover:scale-100 disabled:opacity-50 disabled:pointer-events-none active:scale-90 ml-auto text-slate-500"
                 >
                   <BookmarkIcon className="size-5" />
                 </button>
