@@ -33,7 +33,7 @@ export const ClapButton = ({ count, _id, className, disabled = false }) => {
     <button
       title="Add a Clap"
       onClick={clap}
-      className={`flex items-center disabled:opacity-50 disabled:pointer-events-none active:scale-90 ${
+      className={`flex items-center hover:scale-105 disabled:opacity-50 disabled:pointer-events-none active:scale-90 ${
         className || ""
       }`}
       disabled={loading}

@@ -1,10 +1,23 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { api } from "../../api";
 import { ArticleCard } from "../../common/article-card";
 import { WallLayout } from "../../common/wall-layout";
+import { useAppContext } from "../../context";
 import { MAX_ARTICLES_PER_PAGE } from "../../globals";
 import { PageTitle } from "./page-title";
+
+const Banner = ({ title, description, link, linkTitle }) => {
+  return (
+    <div className="flex flex-col w-full bg-slate-100 p-5 rounded-xl lg:w-72 flex-shrink-0 mb-5">
+      <h2>{title}</h2>
+      <p className="text-sm mt-2">{description}</p>
+      <Link to={link} className="mt-5 btn">
+        {linkTitle}
+      </Link>
+    </div>
+  );
+};
 
 export const HomePage = () => {
   const { query, selectedTopic, articles, topics, totalCount } =
@@ -12,6 +25,8 @@ export const HomePage = () => {
   const [showingArticles, setShowingArticles] = useState(articles);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const { auth } = useAppContext();
 
   useEffect(() => {
     setShowingArticles(articles);
@@ -45,7 +60,30 @@ export const HomePage = () => {
   };
 
   return (
-    <WallLayout topics={topics} rightSideContent={<>Riht side</>}>
+    <WallLayout
+      topics={topics}
+      rightSideContent={
+        <>
+          {!auth ? (
+            <Banner
+              title="Want to write?"
+              description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              vel. Cumque quos praesentium suscipit."
+              link="/sign-up"
+              linkTitle="Get Started"
+            />
+          ) : (
+            <Banner
+              title="We are Sēkara"
+              description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              vel. Cumque quos praesentium suscipit."
+              link="/about"
+              linkTitle="Learn More"
+            />
+          )}
+        </>
+      }
+    >
       <PageTitle query={query} selectedTopic={selectedTopic} />
       <div className="flex flex-col">
         <div className="flex flex-col space-y-5">

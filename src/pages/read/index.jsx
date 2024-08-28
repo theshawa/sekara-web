@@ -88,8 +88,8 @@ export const ReadPage = () => {
               article={article._id}
               onAdd={(comment) => {
                 setCurrentComments((prevComments) => [
-                  comment,
                   ...prevComments,
+                  comment,
                 ]);
                 setCurrentCommentsCount((prevCount) => prevCount + 1);
               }}
