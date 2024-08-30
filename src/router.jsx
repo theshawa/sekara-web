@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "./layout";
 import { AboutPage } from "./pages/about";
 import { AccountPage } from "./pages/account";
+import { BookmarksPage } from "./pages/bookmarks";
+import { EditPage } from "./pages/edit";
+import { EditPageLoaderFunction } from "./pages/edit/loader";
 import { ErrorPage } from "./pages/error";
 import { HomePage } from "./pages/home";
 import { HomePageLoaderFunction } from "./pages/home/loader";
@@ -64,6 +67,15 @@ export const router = createBrowserRouter([
         path: "user/:id",
         element: <UserPage />,
         loader: UserPageLoaderFunction,
+      },
+      {
+        path: "bookmarks",
+        element: <BookmarksPage />,
+      },
+      {
+        path: "edit/:id",
+        element: <EditPage />,
+        loader: EditPageLoaderFunction,
       },
     ],
   },

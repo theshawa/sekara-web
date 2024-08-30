@@ -1,46 +1,41 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { useAppContext } from "../../context";
-import { MAX_CHARACTER_TRESHOLD, USER_ROLES } from "../../globals";
+import { MAX_CHARACTER_TRESHOLD } from "../../globals";
 import { useApi } from "../../hooks/useApi";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
-import { Body } from "./body";
-import { Header } from "./header";
-import { Title } from "./title";
+import { Body } from "../write/body";
+import { Header } from "../write/header";
+import { Title } from "../write/title";
 
-export const WritePage = () => {
+export const EditPage = () => {
   useRedirectOnAuth({
     authRequired: true,
     redirectTo: "/sign-in",
   });
 
-  const { topics } = useLoaderData();
-  const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
-  const [topic, setTopic] = useState("");
+  const { topics, article } = useLoaderData();
+  const [content, setContent] = useState(article.content);
+  const [title, setTitle] = useState(article.title);
+  const [topic, setTopic] = useState(article.topic._id);
   const [publishing, setPublishing] = useState(false);
   const navigate = useNavigate();
   const api = useApi();
-  const { auth, setAuth } = useAppContext();
+
+  useEffect(() => {
+    setContent(article.content);
+    setTitle(article.title);
+    setTopic(article.topic._id);
+  }, [article]);
 
   const publish = async () => {
     setPublishing(true);
     try {
-      const { data } = await api.post("/articles/create", {
+      await api.post(`/articles/update/${article._id}`, {
         title,
         content,
         topic,
       });
-      const articleId = data._id;
-      if (auth.user.role === USER_ROLES.user) {
-        const newAuth = {
-          ...auth,
-          user: { ...auth.user, role: USER_ROLES.user_writer },
-        };
-        localStorage.setItem("auth", JSON.stringify(newAuth));
-        setAuth(newAuth);
-      }
-      navigate(`/read/${articleId}`);
+      navigate(`/read/${article._id}`);
     } catch (error) {
       alert("Failed to publish article. Please try again later.");
     } finally {
@@ -68,6 +63,7 @@ export const WritePage = () => {
           renderingContent.length >= MAX_CHARACTER_TRESHOLD
         }
         publish={publish}
+        title="Edit Article"
       />
       <Title title={title} setTitle={setTitle} />
       <Body content={content} setContent={setContent} />

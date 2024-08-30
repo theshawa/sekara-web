@@ -43,7 +43,13 @@ export const CommentsList = ({ articleId }) => {
       {!!comments.length && (
         <div className="flex flex-col space-y-5 px-5 py-5">
           {comments.map((comment, i) => (
-            <Comment key={i} {...comment} />
+            <Comment
+              key={i}
+              {...comment}
+              onDelete={(id) =>
+                setComments((oc) => oc.filter((c) => c._id !== id))
+              }
+            />
           ))}
         </div>
       )}

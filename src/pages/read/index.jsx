@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { AddComment } from "../../common/add-comment";
 import { Comment } from "../../common/comment";
 import { useAppContext } from "../../context";
@@ -44,7 +44,9 @@ export const ReadPage = () => {
       <ActionBar {...article} />
       {auth && auth.user._id === article.createdBy._id && (
         <div className="flex mt-5 items-center flex-wrap text-slate-500 font-medium text-sm">
-          <button className="action-btn mr-2 mb-1">Update</button>
+          <Link to={`/edit/${article._id}`} className="action-btn mr-2 mb-1">
+            Edit
+          </Link>
           <button
             onClick={deleteArticle}
             disabled={deleting}

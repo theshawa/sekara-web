@@ -12,10 +12,13 @@ export const Header = () => {
       <Logo className="text-slate-950 w-[80px] mr-5" withLink />
       <nav className="flex items-center space-x-5 md:space-x-8 overflow-auto w-max max-w-full ml-auto">
         <Link to="/about" className="link">
-          About us
+          About Sēkara
         </Link>
         {auth ? (
           <>
+            <Link to="/bookmarks" className="link">
+              Bookmarks
+            </Link>
             <Link to="/account" className="link">
               Account
             </Link>

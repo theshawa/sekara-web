@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
+import { BookmarkButton } from "../../common/bookmark-button";
 import { ClapButton } from "../../common/clap-button";
 import { useAppContext } from "../../context";
 import { formatDate } from "../../utils";
 
-export const ActionBar = ({ createdAt, createdBy, claps, topic, _id }) => {
+export const ActionBar = ({
+  createdAt,
+  createdBy,
+  claps,
+  topic,
+  _id,
+  bookmarkedBy,
+}) => {
   const { auth } = useAppContext();
 
   return (
@@ -25,6 +33,8 @@ export const ActionBar = ({ createdAt, createdBy, claps, topic, _id }) => {
         {formatDate(new Date(createdAt))}
       </span>
       <ClapButton disabled={!auth} count={claps} _id={_id} />
+      <div className="mr-5"></div>
+      {auth && <BookmarkButton _id={_id} bookmarkedBy={bookmarkedBy} />}
     </div>
   );
 };

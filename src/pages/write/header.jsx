@@ -5,12 +5,11 @@ export const Header = ({
   selectedTopic,
   selectTopic,
   publishing,
+  title = "New Article",
 }) => {
   return (
     <header className="border border-slate-200 bg-slate-50/90 backdrop-blur-sm px-4 items-center py-2 rounded-md sticky top-[80px] max-w-screen-sm mx-auto w-full h-max flex mb-10">
-      <h3 className="text-slate-900 text-lg font-medium mr-5">
-        ✍️ New Article
-      </h3>
+      <h3 className="text-slate-900 text-lg font-medium mr-5">✍️ {title}</h3>
       <select
         value={selectedTopic}
         onChange={(e) => selectTopic(e.target.value)}

@@ -14,6 +14,8 @@ export const Comment = ({ createdBy, content, createdAt, _id, onDelete }) => {
       await api.delete(`/comments/${_id}`);
       onDelete(_id);
     } catch (error) {
+      console.log(error);
+
       alert("An error occurred. Please try again.");
     } finally {
       setDeleting(false);
