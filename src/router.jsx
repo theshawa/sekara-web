@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "./layout";
 import { AboutPage } from "./pages/about";
 import { AccountPage } from "./pages/account";
+import { AdminTopicsPage } from "./pages/admin/topics";
+import { AdminUsersPage } from "./pages/admin/users";
 import { BookmarksPage } from "./pages/bookmarks";
 import { EditPage } from "./pages/edit";
 import { EditPageLoaderFunction } from "./pages/edit/loader";
@@ -72,6 +74,19 @@ export const router = createBrowserRouter([
         path: "edit/:id",
         element: <EditPage />,
         loader: EditPageLoaderFunction,
+      },
+      {
+        path: "admin",
+        children: [
+          {
+            path: "topics",
+            element: <AdminTopicsPage />,
+          },
+          {
+            path: "users",
+            element: <AdminUsersPage />,
+          },
+        ],
       },
     ],
   },

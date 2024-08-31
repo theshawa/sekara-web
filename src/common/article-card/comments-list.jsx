@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api";
+import { useAppContext } from "../../context";
 import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { LoadingSpinner } from "../../layout/loading-screen";
 import { Comment } from "../comment";
@@ -8,6 +9,7 @@ export const CommentsList = ({ articleId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const handleError = useHandleApiError();
+  const { auth } = useAppContext();
 
   useEffect(() => {
     const loadComments = async () => {
@@ -38,9 +40,11 @@ export const CommentsList = ({ articleId }) => {
             }`
           )}
         </p>
-        <p className="text-xs mt-1 text-slate-400">
-          Read article to add comments.
-        </p>
+        {auth && (
+          <p className="text-xs mt-1 text-slate-400">
+            Read article to add comments.
+          </p>
+        )}
       </div>
       {!!comments.length && (
         <div className="flex flex-col space-y-5 px-5 py-5">

@@ -33,7 +33,7 @@ export const ActionBar = ({
         {formatDate(new Date(createdAt))}
       </span>
       <ClapButton
-        disabled={!auth || auth._id === createdBy._id}
+        disabled={!auth || auth?._id === createdBy._id}
         count={claps}
         _id={_id}
       />

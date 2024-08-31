@@ -93,12 +93,7 @@ export const AccountPage = () => {
       <h1 className="mb-5">Your Account</h1>
       {auth && auth.role !== USER_ROLES.user ? (
         <p className="px-3 py-1 rounded-md font-medium text-white bg-emerald-700 w-max max-w-full">
-          You are{" "}
-          {auth.role === USER_ROLES.admin
-            ? "the Admin"
-            : auth.role === USER_ROLES.moderator
-            ? "a Moderator"
-            : "a ✍️ Writer"}
+          You are {auth.role === USER_ROLES.admin ? "the Admin" : "a ✍️ Writer"}
         </p>
       ) : (
         <p>

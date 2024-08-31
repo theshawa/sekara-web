@@ -32,7 +32,7 @@ export const Comment = ({ createdBy, content, createdAt, _id, onDelete }) => {
         @ {formatDate(new Date(createdAt))}
       </p>
       <p className="text-slate-900 mt-1">{content}</p>
-      {auth && auth._id === createdBy._id && (
+      {auth?._id === createdBy._id && (
         <button
           onClick={deleteComment}
           disabled={deleting}

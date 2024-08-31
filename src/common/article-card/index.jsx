@@ -64,7 +64,7 @@ export const ArticleCard = ({
             </Link>
             <div className="flex flex-wrap mt-auto text-sm">
               <ClapButton
-                disabled={!auth || auth._id === createdBy._id}
+                disabled={!auth || auth?._id === createdBy._id}
                 count={claps}
                 _id={_id}
                 className="mr-4"

@@ -28,7 +28,7 @@ export const BookmarkButton = ({
   };
 
   useEffect(() => {
-    setIsBookmarked(bookmarkedBy.includes(auth._id));
+    setIsBookmarked(bookmarkedBy.includes(auth?._id));
   }, [bookmarkedBy]);
 
   return (

@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { api } from "../../api";
+import sekaraBanner from "../../assets/sekara-banner.png";
 import { ArticleCard } from "../../common/article-card";
 import { WallLayout } from "../../common/wall-layout";
 import { useAppContext } from "../../context";
 import { MAX_ARTICLES_PER_PAGE, USER_ROLES } from "../../globals";
 import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { PageTitle } from "./page-title";
-
-const Banner = ({ title, description, link, linkTitle }) => {
+const Banner = ({ title, description, link, linkTitle, img }) => {
   return (
     <div className="flex flex-col w-full bg-slate-100 p-5 rounded-xl lg:w-72 max-w-sm lg:max-w-none flex-shrink-0 mb-5">
+      {img && (
+        <img
+          alt="Banner Image"
+          src={img}
+          className="object-cover aspect-video rounded-xl mb-3"
+        />
+      )}
       <h2>{title}</h2>
       <p className="text-sm mt-2">{description}</p>
       <Link to={link} className="mt-5 btn">
@@ -66,25 +73,28 @@ export const HomePage = () => {
       rightSideContent={
         <>
           {!auth ? (
-            <Banner
-              title="Want to write?"
-              description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
-              vel. Cumque quos praesentium suscipit."
-              link="/sign-up"
-              linkTitle="Get Started"
-            />
-          ) : (
             <>
               <Banner
                 title="We are Sēkara"
+                img={sekaraBanner}
                 description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
               vel. Cumque quos praesentium suscipit."
                 link="/about"
                 linkTitle="Learn More"
               />
+              <Banner
+                title="Want to write?"
+                description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              vel. Cumque quos praesentium suscipit."
+                link="/sign-up"
+                linkTitle="Get Started"
+              />
+            </>
+          ) : (
+            <>
               {!auth.role !== USER_ROLES.user_writer && (
                 <Banner
-                  title="Want to write?"
+                  title="Not a writer yet?"
                   description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,"
                   link="/write"
                   linkTitle="Get Started"
