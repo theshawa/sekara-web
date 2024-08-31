@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useApi } from "../hooks/useApi";
+import { apiWithAuth } from "../api";
+import { useHandleApiError } from "../hooks/useHandleApiError";
 
 export const AddComment = ({ article, onAdd }) => {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const api = useApi();
+  const handleError = useHandleApiError();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,12 +16,15 @@ export const AddComment = ({ article, onAdd }) => {
         content: comment,
         article,
       };
-      const { data } = await api.post(`/comments/create`, commentData);
+      const { data } = await apiWithAuth().post(
+        `/comments/create`,
+        commentData
+      );
       setComment("");
 
       onAdd(data);
     } catch (err) {
-      alert("Failed to add comment. Please try again later.");
+      handleError(err, "add comment");
     } finally {
       setLoading(false);
     }

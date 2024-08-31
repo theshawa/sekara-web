@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { apiWithAuth } from "../../api";
 import { AddComment } from "../../common/add-comment";
 import { Comment } from "../../common/comment";
 import { useAppContext } from "../../context";
-import { useApi } from "../../hooks/useApi";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { ActionBar } from "./action-bar";
 import "./styles.css";
 
@@ -13,7 +14,8 @@ export const ReadPage = () => {
   const [currentCommentsCount, setCurrentCommentsCount] = useState(0);
   const [currentComments, setCurrentComments] = useState(comments);
   const [deleting, setDeleting] = useState(false);
-  const api = useApi();
+  const handleError = useHandleApiError();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,10 +32,10 @@ export const ReadPage = () => {
       return;
     }
     try {
-      await api.delete(`/articles/${article._id}`);
+      await apiWithAuth().delete(`/articles/${article._id}`);
       navigate("/", { replace: true });
     } catch (error) {
-      alert("An error occurred. Please try again.");
+      handleError(error, "delete article");
     } finally {
       setDeleting(false);
     }
@@ -42,7 +44,7 @@ export const ReadPage = () => {
     <div className="flex flex-col w-full max-w-screen-sm mx-auto pt-10">
       <h1 className="text-4xl md:text-5xl">{article.title}</h1>
       <ActionBar {...article} />
-      {auth && auth.user._id === article.createdBy._id && (
+      {auth && auth._id === article.createdBy._id && (
         <div className="flex mt-5 items-center flex-wrap text-slate-500 font-medium text-sm">
           <Link to={`/edit/${article._id}`} className="action-btn mr-2 mb-1">
             Edit

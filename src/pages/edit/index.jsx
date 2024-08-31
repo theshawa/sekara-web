@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { apiWithAuth } from "../../api";
 import { MAX_CHARACTER_TRESHOLD } from "../../globals";
-import { useApi } from "../../hooks/useApi";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 import { Body } from "../write/body";
 import { Header } from "../write/header";
@@ -19,25 +20,25 @@ export const EditPage = () => {
   const [topic, setTopic] = useState(article.topic._id);
   const [publishing, setPublishing] = useState(false);
   const navigate = useNavigate();
-  const api = useApi();
 
   useEffect(() => {
     setContent(article.content);
     setTitle(article.title);
     setTopic(article.topic._id);
   }, [article]);
+  const handleError = useHandleApiError();
 
   const publish = async () => {
     setPublishing(true);
     try {
-      await api.post(`/articles/update/${article._id}`, {
+      await apiWithAuth().post(`/articles/update/${article._id}`, {
         title,
         content,
         topic,
       });
       navigate(`/read/${article._id}`);
     } catch (error) {
-      alert("Failed to publish article. Please try again later.");
+      handleError(error, "publish article");
     } finally {
       setPublishing(false);
     }

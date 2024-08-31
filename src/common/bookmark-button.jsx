@@ -1,7 +1,8 @@
 import { BookmarkIcon, BookmarkSlashIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+import { apiWithAuth } from "../api";
 import { useAppContext } from "../context";
-import { useApi } from "../hooks/useApi";
+import { useHandleApiError } from "../hooks/useHandleApiError";
 
 export const BookmarkButton = ({
   _id,
@@ -10,25 +11,24 @@ export const BookmarkButton = ({
 }) => {
   const [bookmarking, setBookmarking] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const api = useApi();
 
   const { auth } = useAppContext();
-
+  const handleError = useHandleApiError();
   const toggleBookmark = async () => {
     setBookmarking(true);
     try {
-      const { data } = await api.post(`/articles/bookmark/${_id}`);
+      const { data } = await apiWithAuth().post(`/articles/bookmark/${_id}`);
       setIsBookmarked(data.bookmarked);
       onBookmark(data.bookmarked, _id);
     } catch (error) {
-      alert("Failed to bookmark article. Please try again later.");
+      handleError(error, "bookmark article");
     } finally {
       setBookmarking(false);
     }
   };
 
   useEffect(() => {
-    setIsBookmarked(bookmarkedBy.includes(auth.user._id));
+    setIsBookmarked(bookmarkedBy.includes(auth._id));
   }, [bookmarkedBy]);
 
   return (

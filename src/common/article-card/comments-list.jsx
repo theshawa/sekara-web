@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { LoadingSpinner } from "../../layout/loading-screen";
 import { Comment } from "../comment";
 
 export const CommentsList = ({ articleId }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const handleError = useHandleApiError();
 
   useEffect(() => {
     const loadComments = async () => {
@@ -13,13 +15,13 @@ export const CommentsList = ({ articleId }) => {
         const { data } = await api.get(`/comments?article=${articleId}`);
         setComments(data);
       } catch (error) {
-        alert("Failed to load comments. Please try again later.");
+        handleError(error, "load comments");
       } finally {
         setLoading(false);
       }
     };
     loadComments();
-  }, [articleId]);
+  }, [articleId, handleError]);
   return (
     <div className="mt-5  border rounded-md border-slate-300 overflow-auto max-h-64">
       <div

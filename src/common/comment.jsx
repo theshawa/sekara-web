@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { apiWithAuth } from "../api";
 import { useAppContext } from "../context";
-import { useApi } from "../hooks/useApi";
+import { useHandleApiError } from "../hooks/useHandleApiError";
 import { formatDate } from "../utils";
 
 export const Comment = ({ createdBy, content, createdAt, _id, onDelete }) => {
   const { auth } = useAppContext();
   const [deleting, setDeleting] = useState(false);
-  const api = useApi();
+  const handleError = useHandleApiError();
   const deleteComment = async () => {
     setDeleting(true);
     try {
-      await api.delete(`/comments/${_id}`);
+      await apiWithAuth().delete(`/comments/${_id}`);
       onDelete(_id);
     } catch (error) {
-      console.log(error);
-
-      alert("An error occurred. Please try again.");
+      handleError(error, "delete comment");
     } finally {
       setDeleting(false);
     }
@@ -33,7 +32,7 @@ export const Comment = ({ createdBy, content, createdAt, _id, onDelete }) => {
         @ {formatDate(new Date(createdAt))}
       </p>
       <p className="text-slate-900 mt-1">{content}</p>
-      {auth && auth.user._id === createdBy._id && (
+      {auth && auth._id === createdBy._id && (
         <button
           onClick={deleteComment}
           disabled={deleting}

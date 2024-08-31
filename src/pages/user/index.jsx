@@ -4,6 +4,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { api } from "../../api";
 import { ArticleCard } from "../../common/article-card";
 import { MAX_ARTICLES_PER_PAGE } from "../../globals";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { formatDate } from "../../utils";
 
 export const UserPage = () => {
@@ -12,6 +13,7 @@ export const UserPage = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const params = useParams();
+  const handleError = useHandleApiError();
 
   useEffect(() => {
     setShowingArticles(articles);
@@ -34,7 +36,7 @@ export const UserPage = () => {
       setShowingArticles([...showingArticles, ...data.articles]);
       setPage(newPage);
     } catch (error) {
-      alert("An error occurred while loading. Please try again.");
+      handleError(error, "load articles");
     } finally {
       setLoading(false);
     }

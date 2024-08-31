@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import { apiWithAuth } from "../../api";
 import { ArticleCard } from "../../common/article-card";
-import { useApi } from "../../hooks/useApi";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 import { LoadingSpinner } from "../../layout/loading-screen";
 
@@ -12,35 +13,34 @@ export const BookmarksPage = () => {
 
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const api = useApi();
+  const handleError = useHandleApiError();
 
   useEffect(() => {
     const loadBookmarks = async () => {
       setLoading(true);
       try {
-        const { data } = await api.get("/articles/bookmarks");
+        const { data } = await apiWithAuth().get("/articles/bookmarks");
         setArticles(data);
       } catch (error) {
-        alert("Failed to load bookmarks. Please try again later.");
+        handleError(error, "load bookmarks");
       } finally {
         setLoading(false);
       }
     };
     loadBookmarks();
-  }, [api]);
+  }, [handleError]);
 
   const reload = useCallback(async () => {
     setLoading(true);
     try {
-      const { data } = await api.get("/articles/bookmarks");
+      const { data } = await apiWithAuth().get("/articles/bookmarks");
       setArticles(data);
     } catch (error) {
-      alert("Failed to load bookmarks. Please try again later.");
+      handleError(error, "load bookmarks");
     } finally {
       setLoading(false);
     }
-  }, [api]);
+  }, [handleError]);
 
   return (
     <div className="flex flex-col space-y-5 pt-10 max-w-screen-sm mx-auto w-full">

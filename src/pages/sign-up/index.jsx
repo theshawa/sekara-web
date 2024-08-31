@@ -37,8 +37,8 @@ export const SignUpPage = () => {
         password,
       });
       alert("Sign up successful. Welcome!");
-      setAuth(data);
-      localStorage.setItem("auth", JSON.stringify(data));
+      setAuth(data.user);
+      localStorage.setItem("auth", data.token);
     } catch (error) {
       const message =
         error.response?.data?.message || "An unknown error occurred";

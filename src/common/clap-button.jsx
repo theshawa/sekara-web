@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { useApi } from "../hooks/useApi";
+import { apiWithAuth } from "../api";
+import { useHandleApiError } from "../hooks/useHandleApiError";
 
 export const ClapButton = ({ count, _id, className, disabled = false }) => {
   const [currentCount, setCurrentCount] = useState(count);
   const [loading, setLoading] = useState(false);
-  const api = useApi();
 
+  const handleError = useHandleApiError();
   const clap = async () => {
     setLoading(true);
     try {
-      await api.post(`/articles/clap/${_id}`);
+      await apiWithAuth().post(`/articles/clap/${_id}`);
       setCurrentCount(currentCount + 1);
     } catch (error) {
-      alert("Failed to clap article. Please try again later.");
+      handleError(error, "clap article");
     } finally {
       setLoading(false);
     }

@@ -1,10 +1,11 @@
 import deepEqual from "deep-equal";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiWithAuth } from "../api";
 import { PasswordInput } from "../common/password-input";
 import { useAppContext } from "../context";
 import { USER_ROLES } from "../globals";
-import { useApi } from "../hooks/useApi";
+import { useHandleApiError } from "../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../hooks/useRedirectOnAuth";
 
 export const AccountPage = () => {
@@ -25,28 +26,26 @@ export const AccountPage = () => {
     newPassword: "",
   });
 
-  const api = useApi();
-
   useEffect(() => {
     if (!auth) return;
+
     setProfileFormData({
-      firstName: auth.user.firstName,
-      lastName: auth.user.lastName,
-      description: auth.user.description,
+      firstName: auth.firstName,
+      lastName: auth.lastName,
+      description: auth.description,
     });
   }, [auth]);
+  const handleError = useHandleApiError();
 
   const handleProfileFormSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.put("/user/update-profile", profileFormData);
-      const newAuth = { ...auth, user: { ...auth.user, ...profileFormData } };
-      localStorage.setItem("auth", JSON.stringify(newAuth));
-      setAuth(newAuth);
+      await apiWithAuth().put("/user/update-profile", profileFormData);
+      setAuth({ ...auth, ...profileFormData });
       alert("Profile updated successfully");
     } catch (err) {
-      alert("Failed to update profile. Please try again later or contact us.");
+      handleError(err, "update profile");
     } finally {
       setLoading(false);
     }
@@ -56,14 +55,14 @@ export const AccountPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.put("/user/update-password", passwordFormData);
+      await apiWithAuth().put("/user/update-password", passwordFormData);
       alert(
         "Password updated successfully! Please sign in again with your new password."
       );
       setAuth(null);
       localStorage.removeItem("auth");
     } catch (err) {
-      alert("Failed to update password. Please try again later or contact us.");
+      handleError(err, "update password");
     } finally {
       setLoading(false);
     }
@@ -80,9 +79,11 @@ export const AccountPage = () => {
     }
     try {
       alert("Your account deleted successfully! We are sorry to see you go.");
-      await api.delete("/user");
+      await apiWithAuth().delete("/user");
       setAuth(null);
       localStorage.removeItem("auth");
+    } catch (err) {
+      handleError(err, "delete account");
     } finally {
       setLoading(false);
     }
@@ -90,12 +91,12 @@ export const AccountPage = () => {
   return (
     <div className="flex flex-col py-10 max-w-screen-sm mx-auto">
       <h1 className="mb-5">Your Account</h1>
-      {auth && auth.user.role !== USER_ROLES.user ? (
+      {auth && auth.role !== USER_ROLES.user ? (
         <p className="px-3 py-1 rounded-md font-medium text-white bg-emerald-700 w-max max-w-full">
           You are{" "}
-          {auth.user.role === USER_ROLES.admin
+          {auth.role === USER_ROLES.admin
             ? "the Admin"
-            : auth.user.role === USER_ROLES.moderator
+            : auth.role === USER_ROLES.moderator
             ? "a Moderator"
             : "a ✍️ Writer"}
         </p>
@@ -168,9 +169,9 @@ export const AccountPage = () => {
               loading ||
               (auth &&
                 deepEqual(profileFormData, {
-                  firstName: auth.user.firstName,
-                  lastName: auth.user.lastName,
-                  description: auth.user.description,
+                  firstName: auth.firstName,
+                  lastName: auth.lastName,
+                  description: auth.description,
                 }))
             }
             type="submit"

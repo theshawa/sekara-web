@@ -23,7 +23,7 @@ export const ActionBar = ({
         </Link>
       </span>
       <Link
-        to={`/articles?topic=${topic._id}`}
+        to={`/?topic=${topic._id}`}
         className="hover:underline mr-4 capitalize font-semibold"
       >
         #{topic.title}
@@ -32,7 +32,11 @@ export const ActionBar = ({
         🕑
         {formatDate(new Date(createdAt))}
       </span>
-      <ClapButton disabled={!auth} count={claps} _id={_id} />
+      <ClapButton
+        disabled={!auth || auth._id === createdBy._id}
+        count={claps}
+        _id={_id}
+      />
       <div className="mr-5"></div>
       {auth && <BookmarkButton _id={_id} bookmarkedBy={bookmarkedBy} />}
     </div>

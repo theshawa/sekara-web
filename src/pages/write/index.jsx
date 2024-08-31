@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { apiWithAuth } from "../../api";
 import { useAppContext } from "../../context";
 import { MAX_CHARACTER_TRESHOLD, USER_ROLES } from "../../globals";
-import { useApi } from "../../hooks/useApi";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 import { Body } from "./body";
 import { Header } from "./header";
@@ -20,29 +21,25 @@ export const WritePage = () => {
   const [topic, setTopic] = useState("");
   const [publishing, setPublishing] = useState(false);
   const navigate = useNavigate();
-  const api = useApi();
+  const handleError = useHandleApiError();
+
   const { auth, setAuth } = useAppContext();
 
   const publish = async () => {
     setPublishing(true);
     try {
-      const { data } = await api.post("/articles/create", {
+      const { data } = await apiWithAuth().post("/articles/create", {
         title,
         content,
         topic,
       });
       const articleId = data._id;
-      if (auth.user.role === USER_ROLES.user) {
-        const newAuth = {
-          ...auth,
-          user: { ...auth.user, role: USER_ROLES.user_writer },
-        };
-        localStorage.setItem("auth", JSON.stringify(newAuth));
-        setAuth(newAuth);
+      if (auth.role === USER_ROLES.user) {
+        setAuth({ ...auth, role: USER_ROLES.user_writer });
       }
       navigate(`/read/${articleId}`);
     } catch (error) {
-      alert("Failed to publish article. Please try again later.");
+      handleError(error, "publish article");
     } finally {
       setPublishing(false);
     }
