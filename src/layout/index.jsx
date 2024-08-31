@@ -11,7 +11,7 @@ export const AppLayout = () => {
   const [loading, setLoading] = useState(true);
   const { setAuth } = useAppContext();
 
-  // This effect will run twice as we are using React.StrictMode
+  // This effect will run twice if we use React.StrictMode
   useEffect(() => {
     const handleLocalAuth = async () => {
       const storedToken = localStorage.getItem("auth");
