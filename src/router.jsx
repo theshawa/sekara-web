@@ -12,9 +12,7 @@ import { ReadPage } from "./pages/read";
 import { ReadPageLoaderFunction } from "./pages/read/loader";
 import { SearchResultsPage } from "./pages/search-results";
 import { SignInPage } from "./pages/sign-in";
-import { SignInActionFunction } from "./pages/sign-in/action";
 import { SignUpPage } from "./pages/sign-up";
-import { SignUpActionFunction } from "./pages/sign-up/action";
 import { UserPage } from "./pages/user";
 import { UserPageLoaderFunction } from "./pages/user/loader";
 import { WritePage } from "./pages/write";
@@ -34,12 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "sign-in",
         element: <SignInPage />,
-        action: SignInActionFunction,
       },
       {
         path: "sign-up",
         element: <SignUpPage />,
-        action: SignUpActionFunction,
       },
       {
         path: "account",

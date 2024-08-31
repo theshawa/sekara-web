@@ -5,6 +5,7 @@ import sekaraBanner from "../../assets/sekara-banner.png";
 import { Logo } from "../../common/Logo";
 import { PasswordInput } from "../../common/password-input";
 import { useAppContext } from "../../context";
+import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 
 export const SignUpPage = () => {
@@ -21,6 +22,8 @@ export const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
 
   const { setAuth } = useAppContext();
+
+  const handleError = useHandleApiError();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,9 +43,7 @@ export const SignUpPage = () => {
       setAuth(data.user);
       localStorage.setItem("auth", data.token);
     } catch (error) {
-      const message =
-        error.response?.data?.message || "An unknown error occurred";
-      alert(`Failed to sign up: ${message}`);
+      handleError(error, "sign up");
     } finally {
       setLoading(false);
     }
