@@ -14,9 +14,13 @@ export const Header = () => {
       <header
         className={`sticky top-0 ${
           isAdmin ? "h-[90px]" : "h-[60px]"
-        } bg-slate-50/90 backdrop-blur-sm flex flex-col z-[1000]`}
+        }  flex flex-col z-[1000]`}
       >
-        <div className="flex items-center justify-between z-50 h-[60px]">
+        <div
+          className={`flex items-center justify-between bg-slate-50/90 backdrop-blur-sm z-50 ${
+            isAdmin ? "h-[50px]" : "h-[60px]"
+          }`}
+        >
           <Logo className="text-slate-950 w-[80px] mr-5" withLink />
           <nav className="flex items-center space-x-5 md:space-x-8 overflow-auto w-max max-w-full ml-auto">
             <Link to="/about" className="link">
@@ -71,7 +75,7 @@ export const Header = () => {
           </nav>
         </div>
         {isAdmin && (
-          <nav className="w-max mx-auto max-w-full h-[25px] bg-slate-200/90 flex items-center space-x-5 overflow-auto px-5 rounded-md text-sm font-medium text-slate-600 uppercase">
+          <nav className="w-max mx-auto max-w-full h-[25px] bg-slate-950/90 backdrop-blur-sm mt-[5px] flex items-center space-x-5 overflow-auto px-5 rounded-md text-sm font-medium text-slate-300 uppercase">
             <span className="font-bold flex-shrink-0">ADMIN Ops:</span>
             <Link
               to="/admin/topics"

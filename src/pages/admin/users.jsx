@@ -16,7 +16,7 @@ const UserRow = ({ user, refresh }) => {
   const deactivate = async () => {
     setDeactivating(true);
     try {
-      await apiWithAuth().post(`/user/deactivate/${user._id}`);
+      await apiWithAuth().post(`/user/toggle-deactivated/${user._id}`);
       refresh();
     } catch (error) {
       handleError(error, "deactivate user");

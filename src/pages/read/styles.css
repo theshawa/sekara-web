@@ -2,20 +2,16 @@
   @apply bg-green-300 text-slate-950;
 }
 
-.pen-green {
-  @apply bg-green-400 text-slate-950;
-}
-
 .marker-pink {
   @apply bg-pink-300 text-slate-950;
 }
 
 .pen-green {
-  @apply bg-green-400 text-slate-950;
+  @apply text-green-600;
 }
 
 .marker-yellow {
-  @apply bg-yellow-300 text-slate-950;
+  @apply bg-yellow-600 text-slate-950;
 }
 
 .marker-red {
@@ -23,7 +19,7 @@
 }
 
 .pen-red {
-  @apply bg-red-400 text-slate-950;
+  @apply text-red-600 bg-transparent;
 }
 
 .marker-blue {

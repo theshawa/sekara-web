@@ -10,7 +10,7 @@ import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { PageTitle } from "./page-title";
 const Banner = ({ title, description, link, linkTitle, img }) => {
   return (
-    <div className="flex flex-col w-full bg-slate-100 p-5 rounded-xl lg:w-72 max-w-sm lg:max-w-none flex-shrink-0 mb-5">
+    <div className="flex flex-col w-full bg-slate-100 p-5 rounded-xl dm:max-w-sm lg:max-w-none flex-shrink-0 mb-5">
       {img && (
         <img
           alt="Banner Image"

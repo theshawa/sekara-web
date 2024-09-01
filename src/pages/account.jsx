@@ -104,6 +104,12 @@ export const AccountPage = () => {
           an article to <i>be a writer</i>.
         </p>
       )}
+      <Link
+        className="px-3 py-1 bg-slate-200 border border-slate-300 text-slate-700 font-medium hover:bg-slate-300 active:scale-95 rounded-md mt-5 w-max"
+        to={`/user/${auth._id}`}
+      >
+        View Profile
+      </Link>
       <div className="flex flex-col max-w-sm">
         <hr className="my-10 border-slate-300" />
         <h2 className="mb-5">Update Profile</h2>

@@ -1,5 +1,10 @@
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { PhotoIcon } from "@heroicons/react/24/solid";
+import {
+  ChatBubbleLeftIcon,
+  ClockIcon,
+  PhotoIcon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
@@ -26,23 +31,23 @@ export const ArticleCard = ({
   return (
     <>
       <article className="flex flex-col bg-slate-100 rounded-xl px-5 py-4">
-        <div className="flex">
-          <div className="w-32 h-28 bg-slate-200 rounded-md flex items-center justify-center">
+        <div className="flex flex-col sm:flex-row w-full">
+          <div className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center">
             <PhotoIcon className="size-20 text-slate-300" />
           </div>
-          <div className="flex flex-1 ml-4 flex-col">
+          <div className="flex sm:w-[calc(100%-9rem)] mt-4 sm:mt-0 sm:ml-4 flex-col">
             <div className="flex flex-wrap text-sm text-slate-500 font-medium">
               <div className="flex items-center mb-1">
                 {params?.id !== createdBy._id && (
-                  <>
-                    <span className="grayscale">✍️</span>
+                  <div className="inline-flex items-center">
+                    <UserIcon className="size-4 mr-1" />
                     <Link
                       to={`/user/${createdBy._id}`}
                       className="hover:underline mr-4"
                     >
                       {createdBy.firstName} {createdBy.lastName}
                     </Link>
-                  </>
+                  </div>
                 )}
               </div>
               <Link
@@ -51,18 +56,18 @@ export const ArticleCard = ({
               >
                 #{topic.title}
               </Link>
-              <div className="flex items-center mb-1">
-                <span className="grayscale">🕑</span>
+              <div className="inline-flex items-center mb-1">
+                <ClockIcon className="size-4 mr-1" />
                 <span>{formatDate(new Date(createdAt))}</span>
               </div>
             </div>
             <Link
               to={`/read/${_id}`}
-              className="text-xl font-semibold text-slate-950 hover:underline mt-2 lg:mt-1"
+              className="text-xl font-semibold text-slate-950 line-clamp-2 hover:underline mt-2 lg:mt-2 mb-5"
             >
               {title}
             </Link>
-            <div className="flex flex-wrap mt-auto text-sm">
+            <div className="flex flex-wrap mt-auto text-sm text-slate-500 font-medium">
               <ClapButton
                 disabled={!auth || auth?._id === createdBy._id}
                 count={claps}
@@ -74,9 +79,10 @@ export const ArticleCard = ({
                   <button
                     onClick={() => setShowComments(true)}
                     title="View Comments"
-                    className="flex items-center disabled:opacity-50 hover:scale-105 disabled:hover:scale-100 h-6 disabled:pointer-events-none active:scale-90 mr-4"
+                    className="inline-flex items-center disabled:opacity-50 hover:scale-105 disabled:hover:scale-100 h-6 disabled:pointer-events-none active:scale-90 mr-4"
                   >
-                    <span className="text-xl">📜</span> {comments || 0}
+                    <ChatBubbleLeftIcon className="size-4 mr-1" />{" "}
+                    {comments || 0}
                   </button>
                 ) : (
                   <button

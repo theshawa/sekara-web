@@ -19,6 +19,11 @@ export const BookmarkButton = ({
     try {
       const { data } = await apiWithAuth().post(`/articles/bookmark/${_id}`);
       setIsBookmarked(data.bookmarked);
+      if (data.bookmarked) {
+        alert("Bookmark Added");
+      } else {
+        alert("Removed Bookmark");
+      }
       onBookmark(data.bookmarked, _id);
     } catch (error) {
       handleError(error, "bookmark article");
@@ -29,7 +34,7 @@ export const BookmarkButton = ({
 
   useEffect(() => {
     setIsBookmarked(bookmarkedBy.includes(auth?._id));
-  }, [bookmarkedBy]);
+  }, [bookmarkedBy, auth]);
 
   return (
     <button

@@ -8,6 +8,7 @@ import { BookmarksPage } from "./pages/bookmarks";
 import { EditPage } from "./pages/edit";
 import { EditPageLoaderFunction } from "./pages/edit/loader";
 import { ErrorPage } from "./pages/error";
+import { HiddenArticlePage } from "./pages/hidden-article";
 import { HomePage } from "./pages/home";
 import { HomePageLoaderFunction } from "./pages/home/loader";
 import { ReadPage } from "./pages/read";
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
         path: "read/:id",
         element: <ReadPage />,
         loader: ReadPageLoaderFunction,
+      },
+      {
+        path: "hidden/:id",
+        element: <HiddenArticlePage />,
       },
       {
         path: "user/:id",
