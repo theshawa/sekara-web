@@ -79,7 +79,7 @@ export const ReadPage = () => {
 
   return (
     <div className="flex flex-col w-full max-w-screen-sm mx-auto pt-10">
-      <h1 className="text-4xl md:text-5xl font-medium ">{article.title}</h1>
+      <h1 className="text-3xl md:text-4xl font-medium">{article.title}</h1>
       <ActionBar {...article} />
       <div className="flex mt-5 items-center flex-wrap text-slate-500 font-medium text-sm">
         {auth && auth._id === article.createdBy._id && (

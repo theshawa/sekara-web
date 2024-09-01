@@ -5,7 +5,7 @@ export const Title = ({ title, setTitle }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         type="text"
-        className="text-4xl md:text-5xl font-medium bg-transparent placeholder:text-slate-500 w-full"
+        className="text-3xl md:text-4xl font-medium bg-transparent placeholder:text-slate-500 w-full"
         placeholder="Title"
       />
     </div>
