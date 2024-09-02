@@ -4,6 +4,7 @@ import { apiWithAuth } from "../../api";
 import { AddComment } from "../../common/add-comment";
 import { Comment } from "../../common/comment";
 import { useAppContext } from "../../context";
+import { SERVER_URL } from "../../globals";
 import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useIsAdmin } from "../../hooks/useIsAdmin";
 import { ActionBar } from "./action-bar";
@@ -80,6 +81,12 @@ export const ReadPage = () => {
   return (
     <div className="flex flex-col w-full max-w-screen-sm mx-auto pt-10">
       <h1 className="text-3xl md:text-4xl font-medium">{article.title}</h1>
+      {article.featuredImage && (
+        <img
+          src={`${SERVER_URL}/assets/${article.featuredImage}`}
+          className="w-full aspect-video rounded-xl mt-5 bg-slate-200 object-cover"
+        />
+      )}
       <ActionBar {...article} />
       <div className="flex mt-5 items-center flex-wrap text-slate-500 font-medium text-sm">
         {auth && auth._id === article.createdBy._id && (

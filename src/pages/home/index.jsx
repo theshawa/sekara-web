@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { api } from "../../api";
 import sekaraBanner from "../../assets/sekara-banner.png";
 import { ArticleCard } from "../../common/article-card";
@@ -7,6 +7,7 @@ import { WallLayout } from "../../common/wall-layout";
 import { useAppContext } from "../../context";
 import { MAX_ARTICLES_PER_PAGE, USER_ROLES } from "../../globals";
 import { useHandleApiError } from "../../hooks/useHandleApiError";
+import { LoadingSpinner } from "../../layout/loading-screen";
 import { PageTitle } from "./page-title";
 const Banner = ({ title, description, link, linkTitle, img }) => {
   return (
@@ -35,6 +36,7 @@ export const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const handleError = useHandleApiError();
   const { auth } = useAppContext();
+  const { state } = useNavigation();
 
   useEffect(() => {
     setShowingArticles(articles);
@@ -106,23 +108,32 @@ export const HomePage = () => {
       }
     >
       <PageTitle query={query} selectedTopic={selectedTopic} />
+
       <div className="flex flex-col">
-        <div className="flex flex-col space-y-5">
-          {showingArticles.map((article, i) => (
-            <ArticleCard key={i} {...article} />
-          ))}
-        </div>
-        {showingArticles.length === 0 && (
-          <div className="text-slate-500">No articles found!</div>
-        )}
-        {showingArticles.length < totalCount && (
-          <button
-            disabled={loading}
-            onClick={loadMore}
-            className="uppercase text-sm mt-10 mx-auto active:scale-95 disabled:opacity-50 hover:underline"
-          >
-            {loading ? "Loading..." : "Load More"}
-          </button>
+        {state === "loading" ? (
+          <div className="mx-auto">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <>
+            <div className="flex flex-col space-y-5">
+              {showingArticles.map((article, i) => (
+                <ArticleCard key={i} {...article} />
+              ))}
+            </div>
+            {showingArticles.length === 0 && (
+              <div className="text-slate-500">No articles found!</div>
+            )}
+            {showingArticles.length < totalCount && (
+              <button
+                disabled={loading}
+                onClick={loadMore}
+                className="uppercase text-sm mt-10 mx-auto active:scale-95 disabled:opacity-50 hover:underline"
+              >
+                {loading ? "Loading..." : "Load More"}
+              </button>
+            )}
+          </>
         )}
       </div>
     </WallLayout>

@@ -5,7 +5,7 @@ import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { LoadingSpinner } from "../../layout/loading-screen";
 import { Comment } from "../comment";
 
-export const CommentsList = ({ articleId }) => {
+export const CommentsList = ({ articleId, onDelete }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const handleError = useHandleApiError();
@@ -52,9 +52,10 @@ export const CommentsList = ({ articleId }) => {
             <Comment
               key={i}
               {...comment}
-              onDelete={(id) =>
-                setComments((oc) => oc.filter((c) => c._id !== id))
-              }
+              onDelete={(id) => {
+                setComments((oc) => oc.filter((c) => c._id !== id));
+                onDelete(id);
+              }}
             />
           ))}
         </div>

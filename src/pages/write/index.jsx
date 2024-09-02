@@ -7,6 +7,7 @@ import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 import { Body } from "./body";
 import { Header } from "./header";
+import { ImageUpload } from "./image-upload";
 import { Title } from "./title";
 
 export const WritePage = () => {
@@ -18,6 +19,7 @@ export const WritePage = () => {
   const { topics } = useLoaderData();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [featuredImage, setFeaturedImage] = useState(null);
   const [topic, setTopic] = useState("");
   const [publishing, setPublishing] = useState(false);
   const navigate = useNavigate();
@@ -28,11 +30,14 @@ export const WritePage = () => {
   const publish = async () => {
     setPublishing(true);
     try {
-      const { data } = await apiWithAuth().post("/articles/create", {
-        title,
-        content,
-        topic,
-      });
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("topic", topic);
+      if (featuredImage) {
+        formData.append("featuredImage", featuredImage);
+      }
+      const { data } = await apiWithAuth().post("/articles/create", formData);
       const articleId = data._id;
       if (auth.role === USER_ROLES.user) {
         setAuth({ ...auth, role: USER_ROLES.user_writer });
@@ -67,6 +72,7 @@ export const WritePage = () => {
         publish={publish}
       />
       <Title title={title} setTitle={setTitle} />
+      <ImageUpload file={featuredImage} setFile={setFeaturedImage} />
       <Body content={content} setContent={setContent} />
       {renderingContent && renderingContent.length < MAX_CHARACTER_TRESHOLD && (
         <p className="font-bold max-w-screen-sm mx-auto w-full text-xs">

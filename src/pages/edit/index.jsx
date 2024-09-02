@@ -6,6 +6,7 @@ import { useHandleApiError } from "../../hooks/useHandleApiError";
 import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 import { Body } from "../write/body";
 import { Header } from "../write/header";
+import { ImageUpload } from "../write/image-upload";
 import { Title } from "../write/title";
 
 export const EditPage = () => {
@@ -18,6 +19,7 @@ export const EditPage = () => {
   const [content, setContent] = useState(article.content);
   const [title, setTitle] = useState(article.title);
   const [topic, setTopic] = useState(article.topic._id);
+  const [featuredImage, setFeaturedImage] = useState(article.featuredImage);
   const [publishing, setPublishing] = useState(false);
   const navigate = useNavigate();
 
@@ -31,11 +33,12 @@ export const EditPage = () => {
   const publish = async () => {
     setPublishing(true);
     try {
-      await apiWithAuth().post(`/articles/update/${article._id}`, {
-        title,
-        content,
-        topic,
-      });
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("topic", topic);
+      formData.append("featuredImage", featuredImage);
+      await apiWithAuth().post(`/articles/update/${article._id}`, formData);
       navigate(`/read/${article._id}`);
     } catch (error) {
       handleError(error, "publish article");
@@ -67,6 +70,14 @@ export const EditPage = () => {
         title="Edit Article"
       />
       <Title title={title} setTitle={setTitle} />
+      <ImageUpload
+        file={featuredImage}
+        setFile={setFeaturedImage}
+        reset={
+          featuredImage !== article.featuredImage &&
+          (() => setFeaturedImage(article.featuredImage))
+        }
+      />
       <Body content={content} setContent={setContent} />
       {renderingContent && renderingContent.length < MAX_CHARACTER_TRESHOLD && (
         <p className="font-bold max-w-screen-sm mx-auto w-full text-xs">

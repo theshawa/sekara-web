@@ -42,7 +42,7 @@ export const UserPage = () => {
     }
   };
   return (
-    <div className="flex flex-col mt-10 w-full max-w-screen-sm mx-auto pb-10">
+    <div className="flex flex-col mt-10 w-full max-w-screen-sm mx-auto pb-20">
       <div className="size-20 rounded-full bg-slate-200 mb-5 flex items-center justify-center">
         <UserIcon className="size-10 text-slate-500" />
       </div>
@@ -67,7 +67,7 @@ export const UserPage = () => {
           <span>{totalClaps}</span>
         </div>
       </div>
-      <p className="mt-2">{user.description}</p>
+      {user.description && <p className="mt-2">{user.description}</p>}
       <p className="mt-5 text-sm text-slate-400">
         Joined at {formatDate(new Date(user.createdAt))}.
       </p>

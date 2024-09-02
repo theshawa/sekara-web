@@ -42,7 +42,11 @@ export const AppLayout = () => {
     handleLocalAuth();
   }, []);
 
-  if (state === "loading" || state === "submitting" || loading) {
+  if (
+    (!(location.pathname.startsWith("/?") || location.pathname === "/") &&
+      (state === "loading" || state === "submitting")) ||
+    loading
+  ) {
     return <LoadingScreen />;
   }
 

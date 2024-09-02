@@ -5,7 +5,7 @@ import {
   PhotoIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
 import { formatDate } from "../../utils";
@@ -27,6 +27,11 @@ export const ArticleCard = ({
   const { auth } = useAppContext();
   const params = useParams();
   const [showComments, setShowComments] = useState(false);
+  const [commentCount, setCommentCount] = useState(comments);
+
+  useEffect(() => {
+    setCommentCount(comments);
+  }, [comments]);
 
   return (
     <>
@@ -82,7 +87,7 @@ export const ArticleCard = ({
                     className="inline-flex items-center disabled:opacity-50 hover:scale-105 disabled:hover:scale-100 h-6 disabled:pointer-events-none active:scale-90 mr-4"
                   >
                     <ChatBubbleLeftIcon className="size-4 mr-1" />{" "}
-                    {comments || 0}
+                    {commentCount || 0}
                   </button>
                 ) : (
                   <button
@@ -114,7 +119,14 @@ export const ArticleCard = ({
             </div>
           </div>
         </div>
-        {showComments && comments && <CommentsList articleId={_id} />}
+        {showComments && comments && (
+          <CommentsList
+            onDelete={() => {
+              setCommentCount((cc) => cc - 1);
+            }}
+            articleId={_id}
+          />
+        )}
       </article>
     </>
   );

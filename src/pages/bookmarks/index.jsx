@@ -43,13 +43,20 @@ export const BookmarksPage = () => {
   }, [handleError]);
 
   return (
-    <div className="flex flex-col space-y-5 pt-10 max-w-screen-sm mx-auto w-full">
+    <div className="flex flex-col space-y-5 py-10 max-w-screen-sm mx-auto w-full">
       {loading ? (
         <div className="mx-auto mt-20">
           <LoadingSpinner />
         </div>
       ) : (
         <>
+          <p className="text-center text-slate-700 mb-10">
+            {articles.length
+              ? `${articles.length}  Article${
+                  articles.length === 1 ? "" : "s"
+                } Bookmarked.`
+              : "No bookmarks yet. Bookmark an article to appear here."}{" "}
+          </p>
           {articles.map((article, i) => (
             <ArticleCard
               key={i}
@@ -59,11 +66,6 @@ export const BookmarksPage = () => {
               }}
             />
           ))}
-          {!articles.length && (
-            <p className="text-center text-slate-400">
-              No bookmarks yet. Bookmark an article to appear here.
-            </p>
-          )}
         </>
       )}
     </div>

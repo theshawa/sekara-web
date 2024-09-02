@@ -15,7 +15,7 @@ export const TopicsBar = ({ topics = [] }) => {
       }`}
     >
       <div
-        className={`flex sticky top-0 ${
+        className={`flex sticky z-20 top-0 ${
           showing ? "mb-5" : ""
         } h-[40px] flex-shrink-0`}
       >
