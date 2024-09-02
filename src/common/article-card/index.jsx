@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
+import { SERVER_URL } from "../../globals";
 import { formatDate } from "../../utils";
 import { BookmarkButton } from "../bookmark-button";
 import { ClapButton } from "../clap-button";
@@ -23,6 +24,7 @@ export const ArticleCard = ({
   comments,
   bookmarkedBy = [],
   onBookmark = () => {},
+  featuredImage,
 }) => {
   const { auth } = useAppContext();
   const params = useParams();
@@ -37,9 +39,16 @@ export const ArticleCard = ({
     <>
       <article className="flex flex-col bg-slate-100 rounded-xl px-5 py-4">
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center">
-            <PhotoIcon className="size-20 text-slate-300" />
-          </div>
+          {featuredImage ? (
+            <img
+              src={`${SERVER_URL}/assets/${featuredImage}`}
+              className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center object-cover"
+            />
+          ) : (
+            <div className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center">
+              <PhotoIcon className="size-20 text-slate-300" />
+            </div>
+          )}
           <div className="flex sm:w-[calc(100%-9rem)] mt-4 sm:mt-0 sm:ml-4 flex-col">
             <div className="flex flex-wrap text-sm text-slate-500 font-medium">
               <div className="flex items-center mb-1">
