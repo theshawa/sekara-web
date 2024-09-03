@@ -9,7 +9,7 @@ export const useOnlyForAdmin = () => {
   useEffect(() => {
     if (!isAdmin) {
       alert("You are not authorized to view this page");
-      navigate("/");
+      navigate("/app");
     }
   }, [isAdmin, navigate]);
 };

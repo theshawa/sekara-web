@@ -5,6 +5,7 @@ import {
   PhotoIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
+import { AsyncImage } from "loadable-image";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../context";
@@ -12,6 +13,7 @@ import { SERVER_URL } from "../../globals";
 import { formatDate } from "../../utils";
 import { BookmarkButton } from "../bookmark-button";
 import { ClapButton } from "../clap-button";
+import { ImagePlacehoder } from "../image-placeholder";
 import { CommentsList } from "./comments-list";
 
 export const ArticleCard = ({
@@ -37,18 +39,24 @@ export const ArticleCard = ({
 
   return (
     <>
-      <article className="flex flex-col bg-slate-100 rounded-xl px-5 py-4">
+      <article className="flex flex-col border rounded-xl px-5 py-4">
         <div className="flex flex-col sm:flex-row w-full">
-          {featuredImage ? (
-            <img
-              src={`${SERVER_URL}/assets/${featuredImage}`}
-              className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center object-cover"
-            />
-          ) : (
-            <div className="w-36 aspect-[32/28] bg-slate-200 rounded-md flex items-center justify-center">
-              <PhotoIcon className="size-20 text-slate-300" />
-            </div>
-          )}
+          <div className="w-full sm:w-36 aspect-video sm:aspect-[32/28] flex-shrink-0 rounded-md overflow-hidden">
+            {featuredImage ? (
+              <AsyncImage
+                loader={
+                  <div className="w-full h-full bg-slate-200 rounded-md flex items-center justify-center">
+                    <PhotoIcon className="size-20 text-slate-300" />
+                  </div>
+                }
+                src={`${SERVER_URL}/assets/${featuredImage}`}
+                className="w-full h-auto aspect-video sm:aspect-[32/28]"
+              />
+            ) : (
+              <ImagePlacehoder />
+            )}
+          </div>
+
           <div className="flex sm:w-[calc(100%-9rem)] mt-4 sm:mt-0 sm:ml-4 flex-col">
             <div className="flex flex-wrap text-sm text-slate-500 font-medium">
               <div className="flex items-center mb-1">
@@ -56,7 +64,7 @@ export const ArticleCard = ({
                   <div className="inline-flex items-center">
                     <UserIcon className="size-4 mr-1" />
                     <Link
-                      to={`/user/${createdBy._id}`}
+                      to={`/app/user/${createdBy._id}`}
                       className="hover:underline mr-4"
                     >
                       {createdBy.firstName} {createdBy.lastName}
@@ -65,7 +73,7 @@ export const ArticleCard = ({
                 )}
               </div>
               <Link
-                to={`/?topic=${topic._id}`}
+                to={`/app?topic=${topic._id}`}
                 className="hover:underline mr-4 mb-1 capitalize"
               >
                 #{topic.title}
@@ -76,7 +84,7 @@ export const ArticleCard = ({
               </div>
             </div>
             <Link
-              to={`/read/${_id}`}
+              to={`/app/read/${_id}`}
               className="text-xl font-semibold text-slate-950 line-clamp-2 hover:underline mt-2 lg:mt-2 mb-5"
             >
               {title}
@@ -116,7 +124,7 @@ export const ArticleCard = ({
                   />
                   {auth._id === createdBy._id && (
                     <Link
-                      to={`/edit/${_id}`}
+                      to={`/app/edit/${_id}`}
                       title="Edit Article"
                       className="active:scale-95"
                     >

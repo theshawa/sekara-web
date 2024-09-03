@@ -11,7 +11,7 @@ import { useRedirectOnAuth } from "../../hooks/useRedirectOnAuth";
 export const SignInPage = () => {
   useRedirectOnAuth({
     authRequired: false,
-    redirectTo: "/",
+    redirectTo: "/app",
   });
 
   const [email, setEmail] = useState("");

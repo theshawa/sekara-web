@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { api } from "../../api";
 import { useAppContext } from "../../context";
 import { useHandleApiError } from "../../hooks/useHandleApiError";
-import { LoadingSpinner } from "../../layout/loading-screen";
 import { Comment } from "../comment";
+import { LoadingSpinner } from "../loading-spinner";
 
 export const CommentsList = ({ articleId, onDelete }) => {
   const [comments, setComments] = useState([]);

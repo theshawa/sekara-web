@@ -70,3 +70,25 @@ label.field span {
 .action-btn {
   @apply bg-slate-200 disabled:opacity-50 text-slate-900 disabled:pointer-events-none hover:bg-slate-300 active:scale-95 px-1.5 py-0.5 rounded-md uppercase text-xs font-medium;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(203 213 225) transparent; /* For Firefox */
+}
+
+*::-webkit-scrollbar {
+  width: 20px; /* Width of the scrollbar */
+  height: 16px; /* Width of the scrollbar */
+  background-color: transparent; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(203 213 225); /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}

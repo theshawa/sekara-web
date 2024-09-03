@@ -1,37 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AppLayout } from "./layout";
-import { AboutPage } from "./pages/about";
-import { AccountPage } from "./pages/account";
-import { AdminTopicsPage } from "./pages/admin/topics";
-import { AdminUsersPage } from "./pages/admin/users";
-import { BookmarksPage } from "./pages/bookmarks";
-import { EditPage } from "./pages/edit";
-import { EditPageLoaderFunction } from "./pages/edit/loader";
+import { AccountPage } from "./pages/app/account";
+import { AdminTopicsPage } from "./pages/app/admin/topics";
+import { AdminUsersPage } from "./pages/app/admin/users";
+import { AppLayout } from "./pages/app/app-layout";
+import { BookmarksPage } from "./pages/app/bookmarks";
+import { EditPage } from "./pages/app/edit";
+import { EditPageLoaderFunction } from "./pages/app/edit/loader";
+import { HiddenArticlePage } from "./pages/app/hidden-article";
+import { HomePage } from "./pages/app/home";
+import { HomePageLoaderFunction } from "./pages/app/home/loader";
+import { ReadPage } from "./pages/app/read";
+import { ReadPageLoaderFunction } from "./pages/app/read/loader";
+import { UserPage } from "./pages/app/user";
+import { UserPageLoaderFunction } from "./pages/app/user/loader";
+import { WritePage } from "./pages/app/write";
+import { WritePageLoaderFunction } from "./pages/app/write/loader";
 import { ErrorPage } from "./pages/error";
-import { HiddenArticlePage } from "./pages/hidden-article";
-import { HomePage } from "./pages/home";
-import { HomePageLoaderFunction } from "./pages/home/loader";
-import { ReadPage } from "./pages/read";
-import { ReadPageLoaderFunction } from "./pages/read/loader";
-import { SearchResultsPage } from "./pages/search-results";
 import { SignInPage } from "./pages/sign-in";
 import { SignUpPage } from "./pages/sign-up";
-import { UserPage } from "./pages/user";
-import { UserPageLoaderFunction } from "./pages/user/loader";
-import { WritePage } from "./pages/write";
-import { WritePageLoaderFunction } from "./pages/write/loader";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <HomePage />,
-        loader: HomePageLoaderFunction,
-      },
       {
         path: "sign-in",
         element: <SignInPage />,
@@ -41,55 +33,58 @@ export const router = createBrowserRouter([
         element: <SignUpPage />,
       },
       {
-        path: "account",
-        element: <AccountPage />,
-      },
-      {
-        path: "write",
-        element: <WritePage />,
-        loader: WritePageLoaderFunction,
-      },
-      {
-        path: "about",
-        element: <AboutPage />,
-      },
-      {
-        path: "search-results",
-        element: <SearchResultsPage />,
-      },
-      {
-        path: "read/:id",
-        element: <ReadPage />,
-        loader: ReadPageLoaderFunction,
-      },
-      {
-        path: "hidden/:id",
-        element: <HiddenArticlePage />,
-      },
-      {
-        path: "user/:id",
-        element: <UserPage />,
-        loader: UserPageLoaderFunction,
-      },
-      {
-        path: "bookmarks",
-        element: <BookmarksPage />,
-      },
-      {
-        path: "edit/:id",
-        element: <EditPage />,
-        loader: EditPageLoaderFunction,
-      },
-      {
-        path: "admin",
+        path: "app",
+        element: <AppLayout />,
         children: [
           {
-            path: "topics",
-            element: <AdminTopicsPage />,
+            index: true,
+            element: <HomePage />,
+            loader: HomePageLoaderFunction,
           },
           {
-            path: "users",
-            element: <AdminUsersPage />,
+            path: "account",
+            element: <AccountPage />,
+          },
+          {
+            path: "write",
+            element: <WritePage />,
+            loader: WritePageLoaderFunction,
+          },
+          {
+            path: "read/:id",
+            element: <ReadPage />,
+            loader: ReadPageLoaderFunction,
+          },
+          {
+            path: "hidden/:id",
+            element: <HiddenArticlePage />,
+          },
+          {
+            path: "user/:id",
+            element: <UserPage />,
+            loader: UserPageLoaderFunction,
+          },
+          {
+            path: "bookmarks",
+            element: <BookmarksPage />,
+          },
+          {
+            path: "edit/:id",
+            element: <EditPage />,
+            loader: EditPageLoaderFunction,
+          },
+          {
+            path: "admin",
+            children: [
+              {
+                path: "topics",
+                element: <AdminTopicsPage />,
+              },
+              {
+                path: "users",
+                element: <AdminUsersPage />,
+              },
+            ],
           },
         ],
       },
