@@ -138,7 +138,7 @@ export const AdminUsersPage = () => {
         </button>
       </div>
 
-      <div className="relative overflow-auto">
+      <div className="relative overflow-auto pb-10">
         <table className="w-full text-sm text-left rtl:text-right text-slate-600">
           <thead className="text-xs text-slate-700 uppercase bg-slate-200">
             <tr>

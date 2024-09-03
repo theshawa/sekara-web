@@ -28,8 +28,11 @@ export const Header = () => {
                 <Link to="/app/bookmarks" className="link">
                   Bookmarks
                 </Link>
-                <Link to="/app/account" className="link">
+                {/* <Link to="/app/account" className="link">
                   Account
+                </Link> */}
+                <Link to={`/app/user/${auth._id}`} className="link">
+                  Profile
                 </Link>
                 <button
                   onClick={() => {

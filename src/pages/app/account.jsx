@@ -92,28 +92,19 @@ export const AccountPage = () => {
   return (
     <div className="flex flex-col py-10 max-w-screen-sm mx-auto">
       <h1 className="mb-5">Your Account</h1>
-      <div className="flex flex-wrap">
-        {auth && auth.role !== USER_ROLES.user ? (
-          <p className="px-3 py-1 mr-2 mb-1 rounded-md font-medium text-white bg-emerald-700 w-max max-w-full">
-            You are{" "}
-            {auth.role === USER_ROLES.admin ? "the Admin" : "a ✍️ Writer"}
-          </p>
-        ) : (
-          <p className="mr-2 mb-1">
-            You are still a viewer.{" "}
-            <Link className="hover:underline font-bold" to={"/app/write"}>
-              ✍️ Write
-            </Link>{" "}
-            an article to <i>be a writer</i>.
-          </p>
-        )}
-        <Link
-          className="px-3 py-1 mr-2 mb-1 bg-slate-200 border border-slate-300 text-slate-700 font-medium hover:bg-slate-300 active:scale-95 rounded-md w-max"
-          to={`/app/user/${auth._id}`}
-        >
-          View Profile
-        </Link>
-      </div>
+      {auth && auth.role !== USER_ROLES.user ? (
+        <p className="px-3 py-1 mr-2 mb-1 rounded-md font-medium text-white bg-emerald-700 w-max max-w-full">
+          You are {auth.role === USER_ROLES.admin ? "the Admin" : "a ✍️ Writer"}
+        </p>
+      ) : (
+        <p className="mr-2 mb-1">
+          You are still a viewer.{" "}
+          <Link className="hover:underline font-bold" to={"/app/write"}>
+            ✍️ Write
+          </Link>{" "}
+          an article to <i>be a writer</i>.
+        </p>
+      )}
       <p className="mt-5 text-sm font-medium text-slate-700">
         Email: {auth.email}
       </p>

@@ -1,8 +1,9 @@
 import { UserIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { api } from "../../../api";
 import { ArticleCard } from "../../../common/article-card";
+import { useAppContext } from "../../../context";
 import { MAX_ARTICLES_PER_PAGE } from "../../../globals";
 import { useHandleApiError } from "../../../hooks/useHandleApiError";
 import { formatDate } from "../../../utils";
@@ -14,6 +15,7 @@ export const UserPage = () => {
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const handleError = useHandleApiError();
+  const { auth } = useAppContext();
 
   useEffect(() => {
     setShowingArticles(articles);
@@ -66,11 +68,17 @@ export const UserPage = () => {
           </svg>
           <span>{totalClaps}</span>
         </div>
+        {params?.id === auth?._id && (
+          <Link to={`/app/account`} className="btn w-max max-w-full ml-auto">
+            Manage Account
+          </Link>
+        )}
       </div>
       {user.description && <p className="mt-2">{user.description}</p>}
       <p className="mt-5 text-sm text-slate-400">
         Joined at {formatDate(new Date(user.createdAt))}.
       </p>
+
       <h2 className="mt-10">
         {articlesCount || "No"} Article{articlesCount === 1 ? "" : "s"}
       </h2>
