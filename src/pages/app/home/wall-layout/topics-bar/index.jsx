@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useIsAdmin } from "../../../../../hooks/useIsAdmin";
-import { SearchBar } from "./searchbar";
+import { SearchBar } from "./Searchbar";
 import { Topic } from "./Topic";
 
 export const TopicsBar = ({ topics = [] }) => {
