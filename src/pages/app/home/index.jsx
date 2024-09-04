@@ -95,12 +95,21 @@ export const HomePage = () => {
             </>
           ) : (
             <>
-              {!auth.role !== USER_ROLES.user_writer && (
+              {auth.role !== USER_ROLES.user_writer ? (
                 <Banner
                   title="Not a writer yet?"
                   description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,"
                   link="/app/write"
                   linkTitle="Get Started"
+                />
+              ) : (
+                <Banner
+                  title="We are Sēkara"
+                  img={sekaraBanner}
+                  description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
+              vel. Cumque quos praesentium suscipit."
+                  link="/"
+                  linkTitle="Learn More"
                 />
               )}
             </>
@@ -129,7 +138,7 @@ export const HomePage = () => {
               <button
                 disabled={loading}
                 onClick={loadMore}
-                className="uppercase text-sm mt-10 mx-auto active:scale-95 disabled:opacity-50 hover:underline"
+                className="uppercase text-sm mt-10 mx-auto font-medium active:scale-95 disabled:opacity-50 hover:underline"
               >
                 {loading ? "Loading..." : "Load More"}
               </button>

@@ -91,7 +91,7 @@ export const UserPage = () => {
         <button
           disabled={loading}
           onClick={loadMore}
-          className="uppercase text-sm mt-10 mx-auto active:scale-95 disabled:opacity-50 hover:underline"
+          className="uppercase text-sm mt-10 mx-auto font-medium active:scale-95 disabled:opacity-50 hover:underline"
         >
           {loading ? "Loading..." : "Load More"}
         </button>

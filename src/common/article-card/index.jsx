@@ -41,7 +41,10 @@ export const ArticleCard = ({
     <>
       <article className="flex flex-col border rounded-xl px-5 py-4">
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="w-full sm:w-36 aspect-video sm:aspect-[32/28] flex-shrink-0 rounded-md overflow-hidden">
+          <Link
+            to={`/app/read/${_id}`}
+            className="w-full sm:w-36 aspect-video sm:aspect-[32/28] flex-shrink-0 rounded-md overflow-hidden"
+          >
             {featuredImage ? (
               <AsyncImage
                 loader={
@@ -55,7 +58,7 @@ export const ArticleCard = ({
             ) : (
               <ImagePlacehoder />
             )}
-          </div>
+          </Link>
 
           <div className="flex sm:w-[calc(100%-9rem)] mt-4 sm:mt-0 sm:ml-4 flex-col">
             <div className="flex flex-wrap text-sm text-slate-500 font-medium">

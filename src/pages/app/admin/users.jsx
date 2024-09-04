@@ -68,6 +68,9 @@ const UserRow = ({ user, refresh }) => {
         {user.firstName} {user.lastName}
       </td>
       <td scope="col" className="px-6 py-3">
+        {user.email}
+      </td>
+      <td scope="col" className="px-6 py-3">
         {user.role}
       </td>
       <td scope="col" className="px-6 py-3">
@@ -144,6 +147,9 @@ export const AdminUsersPage = () => {
             <tr>
               <th scope="col" className="px-6 py-3">
                 Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
               </th>
               <th scope="col" className="px-6 py-3">
                 Role
