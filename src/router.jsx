@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import { LandingPage } from "./pages";
 import { AccountPage } from "./pages/app/account";
 import { AdminTopicsPage } from "./pages/app/admin/topics";
@@ -17,6 +17,7 @@ import { UserPageLoaderFunction } from "./pages/app/user/loader";
 import { WritePage } from "./pages/app/write";
 import { WritePageLoaderFunction } from "./pages/app/write/loader";
 import { ErrorPage } from "./pages/error";
+import { ScrollToSection } from "./pages/scroll-to-section";
 import { SignInPage } from "./pages/sign-in";
 import { SignUpPage } from "./pages/sign-up";
 
@@ -24,6 +25,12 @@ export const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <ErrorPage />,
+    element: (
+      <>
+        <ScrollToSection />
+        <Outlet />
+      </>
+    ),
     children: [
       {
         path: "sign-in",

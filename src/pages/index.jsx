@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import landingBg from "../assets/landing-bg.webp";
 import { Logo } from "../common/Logo";
 
@@ -8,6 +8,7 @@ export const LandingPage = () => {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
+  const { state } = useNavigation();
   return (
     <>
       <div
@@ -48,7 +49,7 @@ export const LandingPage = () => {
               to={"/app"}
               className="w-max max-w-full mx-auto mt-10 px-3 flex items-center py-2 rounded-md hover:backdrop-blur-sm hover:bg-stone-50/10 transition-all duration-500"
             >
-              Explore Articles
+              {state === "loading" ? "Loading..." : "Explore Articles"}
             </Link>
             <Link
               to={"#about"}

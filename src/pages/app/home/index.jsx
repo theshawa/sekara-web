@@ -81,13 +81,12 @@ export const HomePage = () => {
                 title="We are Sēkara"
                 img={sekaraBanner}
                 description="Sēkara is a modern blog platform offering insightful articles across a wide range of topics, designed to engage readers with diverse and thought-provoking content."
-                link="/"
+                link="/#about"
                 linkTitle="Learn More"
               />
               <Banner
                 title="Want to write?"
-                description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
-              vel. Cumque quos praesentium suscipit."
+                description="Have a passion for writing or a story to tell? Join us and start sharing your thoughts, ideas, and experiences with the world through Sekara!"
                 link="/sign-up"
                 linkTitle="Get Started"
               />
@@ -97,7 +96,7 @@ export const HomePage = () => {
               {auth.role !== USER_ROLES.user_writer ? (
                 <Banner
                   title="Not a writer yet?"
-                  description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,"
+                  description="Have a passion for writing or a story to tell? Join us and start sharing your thoughts, ideas, and experiences with the world through Sekara!"
                   link="/app/write"
                   linkTitle="Get Started"
                 />
@@ -106,7 +105,7 @@ export const HomePage = () => {
                   title="We are Sēkara"
                   img={sekaraBanner}
                   description="Sēkara is a modern blog platform offering insightful articles across a wide range of topics, designed to engage readers with diverse and thought-provoking content."
-                  link="/"
+                  link="/#about"
                   linkTitle="Learn More"
                 />
               )}

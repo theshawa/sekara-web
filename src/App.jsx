@@ -4,9 +4,11 @@ import { router } from "./router";
 
 function App() {
   return (
-    <AppContextProvider>
-      <RouterProvider router={router} />
-    </AppContextProvider>
+    <>
+      <AppContextProvider>
+        <RouterProvider router={router} />
+      </AppContextProvider>
+    </>
   );
 }
 

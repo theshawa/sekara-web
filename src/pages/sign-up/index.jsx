@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api";
-import sekaraBanner from "../../assets/sekara-banner.png";
+import sekaraBanner from "../../assets/landing-bg.webp";
 import { Logo } from "../../common/Logo";
 import { PasswordInput } from "../../common/password-input";
 import { useAppContext } from "../../context";
@@ -50,81 +50,79 @@ export const SignUpPage = () => {
   };
 
   return (
-    <div className="py-5 min-h-screen flex">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-auto">
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col pt-6 md:px-20 pb-[10vh] lg:pt-[6vh]"
-        >
-          <Logo withLink className="text-slate-300 w-24 flex-shrink-0" />
-          <img
-            src={sekaraBanner}
-            alt="Seakara Banner"
-            className="rounded-xl lg:h-full lg:aspect-auto aspect-video object-cover mt-6 lg:hidden"
-          />
-          <h1 className="mt-6 font-extrabold">Welcome</h1>
-          <p className="mt-2">A Community is waiting for you...</p>
-          <div className="flex flex-col max-w-xs mt-8">
-            <input
-              type="text"
-              className="input"
-              placeholder="First Name"
-              required
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              className="input mt-2"
-              placeholder="Last Name"
-              required
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <input
-              type="email"
-              className="input mt-2"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <PasswordInput
-              placeholder="Password"
-              className="mt-2"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <PasswordInput
-              placeholder="Retype Password"
-              className="mt-2"
-              value={retypePassword}
-              onChange={(e) => setRetypePassword(e.target.value)}
-            />
-            <button
-              disabled={loading || password !== retypePassword}
-              type="submit"
-              className="btn mt-5"
-            >
-              {loading ? "Signing up..." : "Sign Up"}
-            </button>
-            <p className="mt-4">
-              Already a member?{" "}
-              <Link
-                to={"/sign-in"}
-                className="font-bold underline hover:text-slate-950"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
-        </form>
+    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen gap-5 my-auto p-5 w-full max-w-screen-xl mx-auto">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col pt-6 md:px-20 pb-[10vh] lg:pt-[6vh]"
+      >
+        <Logo withLink className="text-slate-300 w-24 flex-shrink-0" />
         <img
           src={sekaraBanner}
-          alt="Sekara Banner"
-          className="rounded-xl aspect-square object-cover hidden lg:flex"
+          alt="Seakara Banner"
+          className="rounded-xl lg:h-full lg:aspect-auto aspect-video object-cover mt-6 lg:hidden"
         />
-      </div>
+        <h1 className="mt-6 font-extrabold">Welcome</h1>
+        <p className="mt-2">A Community is waiting for you...</p>
+        <div className="flex flex-col max-w-xs mt-8">
+          <input
+            type="text"
+            className="input"
+            placeholder="First Name"
+            required
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <input
+            type="text"
+            className="input mt-2"
+            placeholder="Last Name"
+            required
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <input
+            type="email"
+            className="input mt-2"
+            placeholder="Email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <PasswordInput
+            placeholder="Password"
+            className="mt-2"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <PasswordInput
+            placeholder="Retype Password"
+            className="mt-2"
+            value={retypePassword}
+            onChange={(e) => setRetypePassword(e.target.value)}
+          />
+          <button
+            disabled={loading || password !== retypePassword}
+            type="submit"
+            className="btn mt-5"
+          >
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
+          <p className="mt-4">
+            Already a member?{" "}
+            <Link
+              to={"/sign-in"}
+              className="font-bold underline hover:text-slate-950"
+            >
+              Sign in
+            </Link>
+          </p>
+        </div>
+      </form>
+      <img
+        src={sekaraBanner}
+        alt="Sekara Banner"
+        className="rounded-xl h-auto my-auto aspect-square object-cover hidden lg:flex"
+      />
     </div>
   );
 };
