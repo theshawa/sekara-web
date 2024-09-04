@@ -121,7 +121,7 @@ export const SignUpPage = () => {
       <img
         src={sekaraBanner}
         alt="Sekara Banner"
-        className="rounded-xl h-auto my-auto aspect-square object-cover hidden lg:flex"
+        className="rounded-xl h-auto aspect-square object-cover hidden lg:flex"
       />
     </div>
   );
