@@ -1,56 +1,47 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import landingBg from "../assets/landing-bg.webp";
 import { Logo } from "../common/Logo";
 
 export const LandingPage = () => {
   const [query, setQuery] = useState("");
+  const [active, setActive] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="p-0 min-h-screen flex w-full">
+    <div
+      style={{
+        backgroundImage: `url(${landingBg})`,
+      }}
+      className="min-h-screen flex w-full relative"
+    >
       <div
-        style={{
-          backgroundImage: `url(${landingBg})`,
-        }}
-        className="w-full h-full min-h-screen bg-slate-950 bg-cover bg-center rounded-xl text-slate-50 p-10 flex flex-col"
-      >
-        <div className="flex">
-          <Logo className="text-stone-100 w-32" />
-          <Link
-            to="/app"
-            className="ml-auto py-2 px-4 rounded-full bg-stone-700/90 hover:bg-stone-600/90 text-stone-200 backdrop-blur-sm font-medium"
-          >
-            Visit Home
-          </Link>
-        </div>
+        className={`w-full h-full absolute transition-colors duration-500 ease-in-out  ${
+          active ? "bg-stone-950/90" : "bg-stone-950/60"
+        }`}
+      ></div>
+      <div className="flex flex-col items-center max-w-lg mx-auto mt-[30vh] text-stone-50 w-full relative">
+        <Logo className="w-48" />
         <form
           onSubmit={(e) => {
             e.preventDefault();
             navigate(`/app/?query=${query}`);
           }}
-          className="flex items-center w-max mx-auto max-w-full py-3 rounded-full bg-stone-700/90 backdrop-blur-sm px-6 mt-36 shadow-lg"
+          className={`flex items-center w-full max-w-lg h-12 rounded-full  backdrop-blur-sm px-4 mt-10 ${
+            active ? "bg-stone-100/30" : "bg-stone-100/20"
+          } transition-colors duration-500 ease-in-out`}
         >
-          <MagnifyingGlassIcon className="size-5 text-stone-400" />
+          <MagnifyingGlassIcon className="size-4 text-stone-300" />
           <input
             type="text"
-            className="bg-transparent ml-2 text-lg placeholder:text-stone-400 text-stone-200"
+            className="bg-transparent ml-2 text-lg placeholder:text-stone-300 text-stone-200"
             placeholder="Search here..."
             value={query}
+            onFocus={() => setActive(true)}
+            onBlur={() => setActive(false)}
             onChange={(e) => setQuery(e.target.value)}
           />
         </form>
-        <div className="flex flex-col mt-auto">
-          <h2 className="text-xl font-medium text-stone-50">
-            Exploring wonders of writing
-          </h2>
-          <p className="mt-3 max-w-sm text-stone-50/70">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor
-            sapiente, ad incidunt rem neque quis facilis accusantium placeat
-            nostrum quia beatae aliquid. Itaque eligendi voluptatem quia
-            laudantium magnam est aspernatur.
-          </p>
-        </div>
       </div>
     </div>
   );
