@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router-dom";
 import { api } from "../../../api";
-import sekaraBanner from "../../../assets/sekara-banner.png";
+import sekaraBanner from "../../../assets/landing-bg.webp";
 import { ArticleCard } from "../../../common/article-card";
 import { LoadingSpinner } from "../../../common/loading-spinner";
 import { useAppContext } from "../../../context";
@@ -80,8 +80,7 @@ export const HomePage = () => {
               <Banner
                 title="We are Sēkara"
                 img={sekaraBanner}
-                description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
-              vel. Cumque quos praesentium suscipit."
+                description="Sēkara is a modern blog platform offering insightful articles across a wide range of topics, designed to engage readers with diverse and thought-provoking content."
                 link="/"
                 linkTitle="Learn More"
               />
@@ -106,8 +105,7 @@ export const HomePage = () => {
                 <Banner
                   title="We are Sēkara"
                   img={sekaraBanner}
-                  description=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores,
-              vel. Cumque quos praesentium suscipit."
+                  description="Sēkara is a modern blog platform offering insightful articles across a wide range of topics, designed to engage readers with diverse and thought-provoking content."
                   link="/"
                   linkTitle="Learn More"
                 />

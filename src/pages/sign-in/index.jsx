@@ -40,7 +40,7 @@ export const SignInPage = () => {
   };
 
   return (
-    <div className="py-5 min-h-screen flex">
+    <div className="min-h-screen flex">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 my-auto">
         <form
           onSubmit={handleSubmit}

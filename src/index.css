@@ -88,3 +88,7 @@ label.field span {
   background-color: rgb(203 213 225); /* Scrollbar thumb color */
   border-radius: 10px; /* Rounded corners for the scrollbar thumb */
 }
+
+.link {
+  @apply hover:text-slate-950 hover:underline;
+}
