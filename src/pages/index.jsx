@@ -29,9 +29,9 @@ export const LandingPage = () => {
             e.preventDefault();
             navigate(`/app/?query=${query}`);
           }}
-          className="flex items-center w-max mx-auto max-w-full h-12 rounded-full bg-stone-700/90 backdrop-blur-sm px-4 mt-36"
+          className="flex items-center w-max mx-auto max-w-full py-3 rounded-full bg-stone-700/90 backdrop-blur-sm px-6 mt-36 shadow-lg"
         >
-          <MagnifyingGlassIcon className="size-4 text-stone-400" />
+          <MagnifyingGlassIcon className="size-5 text-stone-400" />
           <input
             type="text"
             className="bg-transparent ml-2 text-lg placeholder:text-stone-400 text-stone-200"
