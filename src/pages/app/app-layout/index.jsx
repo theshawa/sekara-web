@@ -53,7 +53,7 @@ export const AppLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="max-w-screen-xl mx-auto px-5">
         <Outlet />
       </main>
     </>

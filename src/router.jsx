@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { LandingPage } from "./pages";
 import { AccountPage } from "./pages/app/account";
 import { AdminTopicsPage } from "./pages/app/admin/topics";
 import { AdminUsersPage } from "./pages/app/admin/users";
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "sign-up",
         element: <SignUpPage />,
+      },
+      {
+        index: true,
+        element: <LandingPage />,
       },
       {
         path: "app",

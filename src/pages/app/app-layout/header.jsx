@@ -14,7 +14,7 @@ export const Header = () => {
       <header
         className={`sticky top-0 ${
           isAdmin ? "h-[90px]" : "h-[60px]"
-        }  flex flex-col z-[1000]`}
+        }  flex flex-col z-[1000] max-w-screen-xl mx-auto px-5`}
       >
         <div
           className={`flex items-center justify-between bg-slate-50/90 backdrop-blur-sm z-50 ${

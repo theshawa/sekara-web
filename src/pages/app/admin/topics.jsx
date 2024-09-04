@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { api, apiWithAuth } from "../../../api";
 import { LoadingSpinner } from "../../../common/loading-spinner";
 import { useHandleApiError } from "../../../hooks/useHandleApiError";
@@ -7,7 +8,24 @@ import { useOnlyForAdmin } from "../../../hooks/useOnlyForAdmin";
 export const Topic = ({ topic, refresh }) => {
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [articles, setArticles] = useState(0);
   const handleError = useHandleApiError();
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      setLoading(true);
+      try {
+        const { data } = await api.get(`/articles?topic=${topic._id}`);
+        setArticles(data.totalCount);
+      } catch (error) {
+        handleError(error, "load articles");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadArticles();
+  }, []);
   const editTopic = async () => {
     setEditing(true);
     try {
@@ -49,8 +67,10 @@ export const Topic = ({ topic, refresh }) => {
   };
   return (
     <div className="flex flex-col">
-      <h2 className="capitalize"># {topic.title}</h2>
-      <p className="text-xs">{topic.articles} Article(s)</p>
+      <Link to={`/app?topic=${topic._id}`}>
+        <h2 className="capitalize hover:underline"># {topic.title}</h2>
+      </Link>
+      <p>{loading ? "..." : `${articles} Article(s)`}</p>
       <div className="flex mt-3">
         <button
           onClick={editTopic}
@@ -59,15 +79,13 @@ export const Topic = ({ topic, refresh }) => {
         >
           {editing ? "Editing..." : "Edit"}
         </button>
-        {topic.articles === 0 && (
-          <button
-            onClick={deleteTopic}
-            disabled={deleting}
-            className="action-btn"
-          >
-            Delete
-          </button>
-        )}
+        <button
+          onClick={deleteTopic}
+          disabled={deleting}
+          className="action-btn"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
