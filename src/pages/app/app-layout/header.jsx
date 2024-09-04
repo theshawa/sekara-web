@@ -23,6 +23,9 @@ export const Header = () => {
         >
           <Logo className="text-slate-950 w-[80px] mr-5" withLink />
           <nav className="flex items-center space-x-5 md:space-x-8 overflow-auto w-max max-w-full ml-auto">
+            <Link to="/app" className="link">
+              Articles
+            </Link>
             {auth ? (
               <>
                 <Link to="/app/bookmarks" className="link">
