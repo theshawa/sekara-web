@@ -23,6 +23,9 @@ export const LandingPage = () => {
         ></div>
         <div className="flex flex-col items-center max-w-lg mx-auto mt-[30vh] text-stone-50 w-full relative">
           <Logo className="w-48" />
+          <p className="text-stone-300 mt-5 text-xl">
+            Exploring wonder of writing...
+          </p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -136,7 +139,7 @@ export const LandingPage = () => {
           <br />
         </p>
         <Link to={"/app"} className="w-max mt-5 btn">
-          Explore Articles
+          Explore Platform
         </Link>
       </section>
     </>
