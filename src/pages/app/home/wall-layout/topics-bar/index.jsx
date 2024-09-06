@@ -8,7 +8,7 @@ export const TopicsBar = ({ topics = [] }) => {
   const isAdmin = useIsAdmin();
   return (
     <div
-      className={`flex flex-col w-full flex-shrink-0 lg:w-[260px] sticky border py-2 md:py-5 overflow-auto px-5 z-50 bg-slate-100/90 backdrop-blur-sm rounded-[10px] ${
+      className={`flex flex-col w-full flex-shrink-0 lg:w-[260px] sticky border py-2 md:py-5 overflow-auto px-5 z-50 bg-slate-50/90 backdrop-blur-sm rounded-[10px] ${
         isAdmin
           ? "max-h-[calc(100vh-120px)] top-[90px]"
           : "max-h-[calc(100vh-100px)] top-[60px]"
