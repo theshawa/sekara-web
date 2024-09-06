@@ -14,7 +14,7 @@ export const LandingPage = () => {
         style={{
           backgroundImage: `url(${landingBg})`,
         }}
-        className="min-h-screen flex w-full relative p-5"
+        className="min-h-screen flex w-full bg-fixed bg-cover bg-center relative p-5"
       >
         <div
           className={`w-full h-full absolute transition-colors left-0 top-0 duration-500 ease-in-out  ${
